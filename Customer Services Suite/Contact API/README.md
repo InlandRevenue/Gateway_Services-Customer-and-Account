@@ -13,7 +13,7 @@ The contact API enables the creating, updating, and deleting of the contact deta
 >**NOTE:** The Contact API is only available to Digital Service Providers who use X.509 Digital Certificate used for Mutual TLS on port 4046 and requires OAuth2 or JWT token.
 
 ## Key documentation
-* View and download the [Contact API YAML](Contact%202020-11-04.yaml)
+* View and download the [Contact API YAML](Contact%202021-09-14.yaml)
 * [Download the Contact API build pack](Build%20pack%20-%20Contact%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON request messages 
 * [Contact API Reference and URL endpoints](#Contact-API-REST-Reference)	
