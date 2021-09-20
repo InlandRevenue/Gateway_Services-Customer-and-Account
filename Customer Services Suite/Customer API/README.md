@@ -14,7 +14,7 @@ The customer API provides general information about a customer. It is one of sev
 
 ## Key documentation
 
-* View and download the [Customer API YAML](Customer%202020-11-26.yaml)
+* View and download the [Customer API YAML](Customer%202021-09-14.yaml)
 * [Download the Customer API build pack](Build%20pack%20-%20Customer%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON request and response messages 	
 * [View API Reference and URL endpoints](#Customer-API-REST-Reference)	
