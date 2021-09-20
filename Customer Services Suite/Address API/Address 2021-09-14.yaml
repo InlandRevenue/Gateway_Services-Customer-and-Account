@@ -1,0 +1,811 @@
+swagger: '2.0'
+info: 
+  title: Address
+  description: 'An API for adding, updating and removing addresses'
+  version: ""
+host: 'eservices-test-gateway.npnsp.ird.govt.nz'
+basePath: /secure/gateway/address/
+schemes: 
+  - https
+paths: 
+  /address: 
+    delete: 
+      tags: 
+        - Address Delete
+      summary: Address Delete
+      description: ""
+      operationId: addressDELETE
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/address_DELETE_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/address_DELETE_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/address_DELETE_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/address_DELETE_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/address_DELETE_ResponseDefault'
+    post: 
+      tags: 
+        - Address Add
+      summary: Address Add
+      description: ""
+      operationId: addressPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/address_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/address_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/address_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/address_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/address_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/address_POST_ResponseDefault'
+    put: 
+      tags: 
+        - Address Update
+      summary: Address Update
+      description: ""
+      operationId: addressPUT
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/address_PUT_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/address_PUT_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/address_PUT_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/address_PUT_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/address_PUT_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
+definitions: 
+  address_DELETE_Request: 
+    type: object
+    required: 
+      - AddressID
+    properties: 
+      AddressID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of an address. This is required when updating or deleting an address.</p>'
+  address_POST_Request: 
+    type: object
+    required: 
+      - Type
+    properties: 
+      CustomerID: 
+        type: string
+        description: '<p>The unique identifier of a customer.</p>'
+        maxLength: 10
+      CustomerIDType: 
+        type: string
+        description: '<p>The type of unique identifier of a customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>IRD</td><td>IRD number</td></tr><tr><td>CST</td><td>Customer Identifier</td></tr><tr><td></td><td></td></tr></tbody></table>'
+        maxLength: 3
+        enum: 
+          - IRD
+          - CST
+          - ""
+      AccountID: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p>'
+        maxLength: 15
+      AccountIDType: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACC</td><td>Account ID</td></tr><tr><td>CMPF</td><td>Complying Fund ID</td></tr><tr><td>KSF</td><td>KiwiSaver Schemes ID</td></tr><tr><td></td><td></td></tr></tbody></table>'
+        maxLength: 6
+        enum: 
+          - ACC
+          - CMPF
+          - KSF
+          - ""
+      Type: 
+        type: string
+        description: '<p>The type of address.</p><table><tbody><tr><th>code</th><th>description</th><th>level</th></tr><tr><td>LOC</td><td>Physical</td><td>customer</td></tr><tr><td>MAL</td><td>Mailing</td><td>customer</td></tr><tr><td>PRFLOC</td><td>Physical</td><td>account</td></tr><tr><td>PRFMAL</td><td>Mailing</td><td>account</td></tr></tbody></table>'
+        maxLength: 6
+        minLength: 3
+        enum: 
+          - LOC
+          - MAL
+          - PRFLOC
+          - PRFMAL
+      Address: 
+        type: object
+        required: 
+          - Street
+          - City
+          - Country
+        properties: 
+          Street: 
+            type: string
+            description: '<p>The first street line of the address.</p>'
+            maxLength: 255
+            minLength: 1
+          Street2: 
+            type: string
+            description: '<p>The second street line of the address.</p>'
+            maxLength: 255
+          Unit: 
+            type: string
+            description: '<p>The unit of the address.</p>'
+            maxLength: 30
+          UnitType: 
+            type: string
+            description: '<p>The unit type of the address. Only applicable to addresses for the following countries: United States, Canada</p><table><tbody><tr><th>country</th><th>type</th><th>description</th></tr><tr><td>CA</td><td>#</td><td>#</td></tr><tr><td>CA</td><td>APT</td><td>APARTMENT</td></tr><tr><td>CA</td><td>BLDG</td><td>BUILDING</td></tr><tr><td>CA</td><td>BSMT</td><td>BASEMENT</td></tr><tr><td>CA</td><td>DEPT</td><td>DEPARTMENT</td></tr><tr><td>CA</td><td>FL</td><td>FLOOR</td></tr><tr><td>CA</td><td>FRNT</td><td>FRONT</td></tr><tr><td>CA</td><td>HNGR</td><td>HANGAR</td></tr><tr><td>CA</td><td>LBBY</td><td>LOBBY</td></tr><tr><td>CA</td><td>LOT</td><td>LOT</td></tr><tr><td>CA</td><td>LOWR</td><td>LOWER</td></tr><tr><td>CA</td><td>NUM</td><td>NUMBER</td></tr><tr><td>CA</td><td>OFC</td><td>OFFICE</td></tr><tr><td>CA</td><td>PH</td><td>PENTHOUSE</td></tr><tr><td>CA</td><td>PIER</td><td>PIER</td></tr><tr><td>CA</td><td>REAR</td><td>REAR</td></tr><tr><td>CA</td><td>RM</td><td>ROOM</td></tr><tr><td>CA</td><td>SIDE</td><td>SIDE</td></tr><tr><td>CA</td><td>SLIP</td><td>SLIP</td></tr><tr><td>CA</td><td>SPC</td><td>SPACE</td></tr><tr><td>CA</td><td>STE</td><td>SUITE</td></tr><tr><td>CA</td><td>STOP</td><td>STOP</td></tr><tr><td>CA</td><td>TRLR</td><td>TRAILER</td></tr><tr><td>CA</td><td>UNIT</td><td>UNIT</td></tr><tr><td>CA</td><td>UPPR</td><td>UPPER</td></tr><tr><td>NZ</td><td>APARTMENT</td><td>APARTMENT</td></tr><tr><td>NZ</td><td>FLAT</td><td>FLAT</td></tr><tr><td>NZ</td><td>KIOSK</td><td>KIOSK</td></tr><tr><td>NZ</td><td>NUMBER</td><td>NUMBER</td></tr><tr><td>NZ</td><td>ROOM</td><td>ROOM</td></tr><tr><td>NZ</td><td>SHOP</td><td>SHOP</td></tr><tr><td>NZ</td><td>SUITE</td><td>SUITE</td></tr><tr><td>NZ</td><td>UNIT</td><td>UNIT</td></tr><tr><td>NZ</td><td>VILLA</td><td>VILLA</td></tr><tr><td>US</td><td>#</td><td>#</td></tr><tr><td>US</td><td>APT</td><td>APARTMENT</td></tr><tr><td>US</td><td>BLDG</td><td>BUILDING</td></tr><tr><td>US</td><td>BSMT</td><td>BASEMENT</td></tr><tr><td>US</td><td>DEPT</td><td>DEPARTMENT</td></tr><tr><td>US</td><td>FL</td><td>FLOOR</td></tr><tr><td>US</td><td>FRNT</td><td>FRONT</td></tr><tr><td>US</td><td>HNGR</td><td>HANGAR</td></tr><tr><td>US</td><td>LBBY</td><td>LOBBY</td></tr><tr><td>US</td><td>LOT</td><td>LOT</td></tr><tr><td>US</td><td>LOWR</td><td>LOWER</td></tr><tr><td>US</td><td>NUM</td><td>NUMBER</td></tr><tr><td>US</td><td>OFC</td><td>OFFICE</td></tr><tr><td>US</td><td>PH</td><td>PENTHOUSE</td></tr><tr><td>US</td><td>PIER</td><td>PIER</td></tr><tr><td>US</td><td>REAR</td><td>REAR</td></tr><tr><td>US</td><td>RM</td><td>ROOM</td></tr><tr><td>US</td><td>SIDE</td><td>SIDE</td></tr><tr><td>US</td><td>SLIP</td><td>SLIP</td></tr><tr><td>US</td><td>SPC</td><td>SPACE</td></tr><tr><td>US</td><td>STE</td><td>SUITE</td></tr><tr><td>US</td><td>STOP</td><td>STOP</td></tr><tr><td>US</td><td>TRLR</td><td>TRAILER</td></tr><tr><td>US</td><td>UNIT</td><td>UNIT</td></tr><tr><td>US</td><td>UPPR</td><td>UPPER</td></tr></tbody></table>'
+            maxLength: 50
+            enum: 
+              - '#'
+              - APARTMENT
+              - APT
+              - BLDG
+              - BSMT
+              - DEPT
+              - FL
+              - FLAT
+              - FRNT
+              - HNGR
+              - KIOSK
+              - LBBY
+              - LOT
+              - LOWR
+              - NUM
+              - NUMBER
+              - OFC
+              - PH
+              - PIER
+              - REAR
+              - RM
+              - ROOM
+              - SHOP
+              - SIDE
+              - SLIP
+              - SPC
+              - STE
+              - STOP
+              - SUITE
+              - TRLR
+              - UNIT
+              - UPPR
+              - VILLA
+              - ""
+          City: 
+            type: string
+            description: '<p>The city of the address.</p>'
+            maxLength: 100
+          State: 
+            type: string
+            description: '<p>The state of the address. Represented as the ISO 3166-2 subdivision. This is required for addresses for the following countries: Australia, Canada, United States of America</p>'
+            maxLength: 6
+          PostCode: 
+            type: string
+            description: "<p>The post code of the address. This is required for addresses for the following countries: Australia, Canada, United States of America</p><table><tbody><tr><th>country</th><th>required</th><th>regex</th></tr><tr><td>AU</td><td>True</td><td>^\\d{4}$</td></tr><tr><td>CA</td><td>True</td><td>^[A-Z]\\d[A-Z]\\s\\d[A-Z]\\d$</td></tr><tr><td>FI</td><td>False</td><td>^\\d{5}$</td></tr><tr><td>NZ</td><td>True</td><td>^\\d{4}$</td></tr><tr><td>PL</td><td>False</td><td>^\\d{2}-\\d{3}$</td></tr><tr><td>PR</td><td>False</td><td>^\\d{5}-\\d{2}[\\w\\d]{2}$</td></tr><tr><td>US</td><td>True</td><td>^\\d{5}-\\d{2}[\\w\\d]{2}$</td></tr></tbody></table>"
+            maxLength: 30
+          Country: 
+            type: string
+            description: '<p>The ISO 3166-1 alpha-2 country code of the address.</p>'
+            maxLength: 2
+            minLength: 2
+          Attention: 
+            type: string
+            description: '<p>The person to whom the correspondence is addressed.</p>'
+            maxLength: 255
+          Urbanisation: 
+            type: string
+            description: '<p>The urbanisation of the address. This is required for addresses for the following countries: Australia.</p>'
+            maxLength: 50
+          District: 
+            type: string
+            description: '<p>The district of the address.</p>'
+            maxLength: 30
+          SubDistrict: 
+            type: string
+            description: '<p>The sub district of the address.</p>'
+            maxLength: 30
+          SubProvince: 
+            type: string
+            description: '<p>The sub province of the address.</p>'
+            maxLength: 50
+      NewZealand: 
+        type: object
+        required: 
+          - DPID
+        properties: 
+          DPID: 
+            type: number
+            format: int32
+            description: '<p>The Delivery Point Identifier (DPID) provided by New Zealand Post for a valid New Zealand address.</p>'
+          Attention: 
+            type: string
+            description: '<p>The person to whom the correspondence is addressed.</p>'
+            maxLength: 255
+  address_PUT_Request: 
+    type: object
+    required: 
+      - AddressID
+    properties: 
+      AddressID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of an address. This is required when updating or deleting an address.</p>'
+      Address: 
+        type: object
+        required: 
+          - Street
+          - City
+          - Country
+        properties: 
+          Street: 
+            type: string
+            description: '<p>The first street line of the address.</p>'
+            maxLength: 255
+            minLength: 1
+          Street2: 
+            type: string
+            description: '<p>The second street line of the address.</p>'
+            maxLength: 255
+          Unit: 
+            type: string
+            description: '<p>The unit of the address.</p>'
+            maxLength: 30
+          UnitType: 
+            type: string
+            description: '<p>The unit type of the address. Only applicable to addresses for the following countries: United States, Canada</p><table><tbody><tr><th>country</th><th>type</th><th>description</th></tr><tr><td>CA</td><td>#</td><td>#</td></tr><tr><td>CA</td><td>APT</td><td>APARTMENT</td></tr><tr><td>CA</td><td>BLDG</td><td>BUILDING</td></tr><tr><td>CA</td><td>BSMT</td><td>BASEMENT</td></tr><tr><td>CA</td><td>DEPT</td><td>DEPARTMENT</td></tr><tr><td>CA</td><td>FL</td><td>FLOOR</td></tr><tr><td>CA</td><td>FRNT</td><td>FRONT</td></tr><tr><td>CA</td><td>HNGR</td><td>HANGAR</td></tr><tr><td>CA</td><td>LBBY</td><td>LOBBY</td></tr><tr><td>CA</td><td>LOT</td><td>LOT</td></tr><tr><td>CA</td><td>LOWR</td><td>LOWER</td></tr><tr><td>CA</td><td>NUM</td><td>NUMBER</td></tr><tr><td>CA</td><td>OFC</td><td>OFFICE</td></tr><tr><td>CA</td><td>PH</td><td>PENTHOUSE</td></tr><tr><td>CA</td><td>PIER</td><td>PIER</td></tr><tr><td>CA</td><td>REAR</td><td>REAR</td></tr><tr><td>CA</td><td>RM</td><td>ROOM</td></tr><tr><td>CA</td><td>SIDE</td><td>SIDE</td></tr><tr><td>CA</td><td>SLIP</td><td>SLIP</td></tr><tr><td>CA</td><td>SPC</td><td>SPACE</td></tr><tr><td>CA</td><td>STE</td><td>SUITE</td></tr><tr><td>CA</td><td>STOP</td><td>STOP</td></tr><tr><td>CA</td><td>TRLR</td><td>TRAILER</td></tr><tr><td>CA</td><td>UNIT</td><td>UNIT</td></tr><tr><td>CA</td><td>UPPR</td><td>UPPER</td></tr><tr><td>NZ</td><td>APARTMENT</td><td>APARTMENT</td></tr><tr><td>NZ</td><td>FLAT</td><td>FLAT</td></tr><tr><td>NZ</td><td>KIOSK</td><td>KIOSK</td></tr><tr><td>NZ</td><td>NUMBER</td><td>NUMBER</td></tr><tr><td>NZ</td><td>ROOM</td><td>ROOM</td></tr><tr><td>NZ</td><td>SHOP</td><td>SHOP</td></tr><tr><td>NZ</td><td>SUITE</td><td>SUITE</td></tr><tr><td>NZ</td><td>UNIT</td><td>UNIT</td></tr><tr><td>NZ</td><td>VILLA</td><td>VILLA</td></tr><tr><td>US</td><td>#</td><td>#</td></tr><tr><td>US</td><td>APT</td><td>APARTMENT</td></tr><tr><td>US</td><td>BLDG</td><td>BUILDING</td></tr><tr><td>US</td><td>BSMT</td><td>BASEMENT</td></tr><tr><td>US</td><td>DEPT</td><td>DEPARTMENT</td></tr><tr><td>US</td><td>FL</td><td>FLOOR</td></tr><tr><td>US</td><td>FRNT</td><td>FRONT</td></tr><tr><td>US</td><td>HNGR</td><td>HANGAR</td></tr><tr><td>US</td><td>LBBY</td><td>LOBBY</td></tr><tr><td>US</td><td>LOT</td><td>LOT</td></tr><tr><td>US</td><td>LOWR</td><td>LOWER</td></tr><tr><td>US</td><td>NUM</td><td>NUMBER</td></tr><tr><td>US</td><td>OFC</td><td>OFFICE</td></tr><tr><td>US</td><td>PH</td><td>PENTHOUSE</td></tr><tr><td>US</td><td>PIER</td><td>PIER</td></tr><tr><td>US</td><td>REAR</td><td>REAR</td></tr><tr><td>US</td><td>RM</td><td>ROOM</td></tr><tr><td>US</td><td>SIDE</td><td>SIDE</td></tr><tr><td>US</td><td>SLIP</td><td>SLIP</td></tr><tr><td>US</td><td>SPC</td><td>SPACE</td></tr><tr><td>US</td><td>STE</td><td>SUITE</td></tr><tr><td>US</td><td>STOP</td><td>STOP</td></tr><tr><td>US</td><td>TRLR</td><td>TRAILER</td></tr><tr><td>US</td><td>UNIT</td><td>UNIT</td></tr><tr><td>US</td><td>UPPR</td><td>UPPER</td></tr></tbody></table>'
+            maxLength: 50
+            enum: 
+              - '#'
+              - APARTMENT
+              - APT
+              - BLDG
+              - BSMT
+              - DEPT
+              - FL
+              - FLAT
+              - FRNT
+              - HNGR
+              - KIOSK
+              - LBBY
+              - LOT
+              - LOWR
+              - NUM
+              - NUMBER
+              - OFC
+              - PH
+              - PIER
+              - REAR
+              - RM
+              - ROOM
+              - SHOP
+              - SIDE
+              - SLIP
+              - SPC
+              - STE
+              - STOP
+              - SUITE
+              - TRLR
+              - UNIT
+              - UPPR
+              - VILLA
+              - ""
+          City: 
+            type: string
+            description: '<p>The city of the address.</p>'
+            maxLength: 100
+          State: 
+            type: string
+            description: '<p>The state of the address. Represented as the ISO 3166-2 subdivision. This is required for addresses for the following countries: Australia, Canada, United States of America</p>'
+            maxLength: 6
+          PostCode: 
+            type: string
+            description: "<p>The post code of the address. This is required for addresses for the following countries: Australia, Canada, United States of America</p><table><tbody><tr><th>country</th><th>required</th><th>regex</th></tr><tr><td>AU</td><td>True</td><td>^\\d{4}$</td></tr><tr><td>CA</td><td>True</td><td>^[A-Z]\\d[A-Z]\\s\\d[A-Z]\\d$</td></tr><tr><td>FI</td><td>False</td><td>^\\d{5}$</td></tr><tr><td>NZ</td><td>True</td><td>^\\d{4}$</td></tr><tr><td>PL</td><td>False</td><td>^\\d{2}-\\d{3}$</td></tr><tr><td>PR</td><td>False</td><td>^\\d{5}-\\d{2}[\\w\\d]{2}$</td></tr><tr><td>US</td><td>True</td><td>^\\d{5}-\\d{2}[\\w\\d]{2}$</td></tr></tbody></table>"
+            maxLength: 30
+          Country: 
+            type: string
+            description: '<p>The ISO 3166-1 alpha-2 country code of the address.</p>'
+            maxLength: 2
+            minLength: 2
+          Attention: 
+            type: string
+            description: '<p>The person to whom the correspondence is addressed.</p>'
+            maxLength: 255
+          Urbanisation: 
+            type: string
+            description: '<p>The urbanisation of the address. This is required for addresses for the following countries: Australia.</p>'
+            maxLength: 50
+          District: 
+            type: string
+            description: '<p>The district of the address.</p>'
+            maxLength: 30
+          SubDistrict: 
+            type: string
+            description: '<p>The sub district of the address.</p>'
+            maxLength: 30
+          SubProvince: 
+            type: string
+            description: '<p>The sub province of the address.</p>'
+            maxLength: 50
+      NewZealand: 
+        type: object
+        required: 
+          - DPID
+        properties: 
+          DPID: 
+            type: number
+            format: int32
+            description: '<p>The Delivery Point Identifier (DPID) provided by New Zealand Post for a valid New Zealand address.</p>'
+          Attention: 
+            type: string
+            description: '<p>The person to whom the correspondence is addressed.</p>'
+            maxLength: 255
+  address_DELETE_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ADR100</td><td>An address of this type cannot be deleted. Please update instead.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ADR100
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  address_DELETE_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  address_DELETE_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  address_DELETE_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ADR100</td><td>An address of this type cannot be deleted. Please update instead.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ADR100
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  address_POST_Response200: 
+    type: object
+    required: 
+      - AddressID
+    properties: 
+      AddressID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of an address. This is required when updating or deleting an address.</p>'
+  address_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>ADR101</td><td>There is an existing address of this type.</td></tr><tr><td>ADR102</td><td>The address provided is invalid.</td></tr><tr><td>ADR103</td><td>The DPID provided is invalid.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - ADR101
+                - ADR102
+                - ADR103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  address_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  address_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  address_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>ADR101</td><td>There is an existing address of this type.</td></tr><tr><td>ADR102</td><td>The address provided is invalid.</td></tr><tr><td>ADR103</td><td>The DPID provided is invalid.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - ADR101
+                - ADR102
+                - ADR103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  address_PUT_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ADR102</td><td>The address provided is invalid.</td></tr><tr><td>ADR103</td><td>The DPID provided is invalid.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ADR102
+                - ADR103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  address_PUT_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  address_PUT_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  address_PUT_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ADR102</td><td>The address provided is invalid.</td></tr><tr><td>ADR103</td><td>The DPID provided is invalid.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ADR102
+                - ADR103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
