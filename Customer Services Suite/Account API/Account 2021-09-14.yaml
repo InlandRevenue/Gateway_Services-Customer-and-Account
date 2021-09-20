@@ -1,0 +1,877 @@
+swagger: '2.0'
+info: 
+  title: Account
+  description: The Account API
+  version: ""
+host: 'eservices-test-gateway.npnsp.ird.govt.nz'
+basePath: /secure/gateway/account/
+schemes: 
+  - https
+paths: 
+  /account: 
+    post: 
+      tags: 
+        - Account Retrieve
+      summary: Account Retrieve
+      description: ""
+      operationId: accountPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/account_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/account_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/account_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/account_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/account_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/account_POST_ResponseDefault'
+  /list: 
+    post: 
+      tags: 
+        - Account List
+      summary: Account List
+      description: ""
+      operationId: listPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/list_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/list_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/list_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/list_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/list_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/list_POST_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
+definitions: 
+  account_POST_Request: 
+    type: object
+    required: 
+      - AccountID
+      - AccountIDType
+    properties: 
+      AccountID: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p>'
+        maxLength: 15
+        minLength: 7
+      AccountIDType: 
+        type: string
+        description: '<p>The type of unique identifier of an account that can be retrieved through the account information service.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACC</td><td>Account ID</td></tr><tr><td>CMPF</td><td>Complying Fund ID</td></tr><tr><td>KSF</td><td>KiwiSaver Schemes ID</td></tr></tbody></table>'
+        maxLength: 6
+        minLength: 3
+        enum: 
+          - ACC
+          - CMPF
+          - KSF
+  list_POST_Request: 
+    type: object
+    required: 
+      - CustomerID
+      - CustomerIDType
+    properties: 
+      CustomerID: 
+        type: string
+        description: '<p>The unique identifier of a customer.</p>'
+        maxLength: 10
+        minLength: 9
+      CustomerIDType: 
+        type: string
+        description: '<p>The type of unique identifier of a customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>IRD</td><td>IRD number</td></tr><tr><td>CST</td><td>Customer Identifier</td></tr></tbody></table>'
+        maxLength: 3
+        minLength: 3
+        enum: 
+          - IRD
+          - CST
+  account_POST_Response200: 
+    type: object
+    required: 
+      - Account
+    properties: 
+      Account: 
+        type: object
+        required: 
+          - ID
+          - IDType
+          - Status
+          - AccountType
+          - FilingFrequency
+          - Commence
+          - Cease
+        properties: 
+          ID: 
+            type: string
+            description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p>'
+            maxLength: 15
+            minLength: 7
+          IDType: 
+            type: string
+            description: '<p>The type of unique identifier of an account that can be retrieved through the account information service.</p>'
+            maxLength: 6
+            minLength: 3
+            enum: 
+              - ACC
+              - CMPF
+              - KSF
+          Status: 
+            type: string
+            description: '<p>The status of the account.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT</td><td>Active</td></tr><tr><td>CLS</td><td>Closed</td></tr><tr><td>SUS</td><td>Suspended</td></tr></tbody></table>'
+            maxLength: 3
+            minLength: 3
+            enum: 
+              - ACT
+              - CLS
+              - SUS
+          AccountType: 
+            type: string
+            description: '<p>The account/product type</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AIL</td><td>Approved issuer levy</td></tr><tr><td>AIP</td><td>Account Information Provider</td></tr><tr><td>CAD</td><td>Casino duty</td></tr><tr><td>CPR</td><td>Child support - Receiving carer</td></tr><tr><td>CRS</td><td>CRS</td></tr><tr><td>DWT</td><td>Dividend withholding tax</td></tr><tr><td>EMP</td><td>Payroll</td></tr><tr><td>EQU</td><td>Income equalisation</td></tr><tr><td>ERA</td><td>Environmental restoration</td></tr><tr><td>FAM</td><td>Working for Families</td></tr><tr><td>FAT</td><td>FATCA</td></tr><tr><td>FBT</td><td>FBT</td></tr><tr><td>FTR</td><td>NZ foreign trust</td></tr><tr><td>GMD</td><td>Gaming machine duty</td></tr><tr><td>GSD</td><td>GST satisfaction of debt</td></tr><tr><td>GST</td><td>GST</td></tr><tr><td>INC</td><td>Income tax</td></tr><tr><td>IPS</td><td>RWT on interest</td></tr><tr><td>KSF</td><td>KiwiSaver scheme</td></tr><tr><td>LOD</td><td>Lottery duty</td></tr><tr><td>MPO</td><td>Multi payment option</td></tr><tr><td>NCP</td><td>Child support - Liable parent</td></tr><tr><td>NRT</td><td>Non-resident withholding tax</td></tr><tr><td>PIE</td><td>Portfolio investment entity</td></tr><tr><td>PRS</td><td>Payroll subsidy</td></tr><tr><td>RDI</td><td>R&D tax incentive</td></tr><tr><td>REB</td><td>Donation tax credit</td></tr><tr><td>RLT</td><td>Residential land withholding tax</td></tr><tr><td>RSP</td><td>Resurgence Support Payment</td></tr><tr><td>RUL</td><td>Rulings and determinations</td></tr><tr><td>RWT</td><td>Resident withholding tax</td></tr><tr><td>SBC</td><td>Small Business loan</td></tr><tr><td>SLS</td><td>Student loan</td></tr><tr><td>TOD</td><td>Totalisator duty</td></tr><tr><td>TPA</td><td>Tax Pooling account</td></tr><tr><td>UCM</td><td>Unclaimed money holder</td></tr></tbody></table>'
+            maxLength: 3
+            minLength: 3
+            enum: 
+              - AIL
+              - AIP
+              - CAD
+              - CPR
+              - CRS
+              - DWT
+              - EMP
+              - EQU
+              - ERA
+              - FAM
+              - FAT
+              - FBT
+              - FTR
+              - GMD
+              - GSD
+              - GST
+              - INC
+              - IPS
+              - KSF
+              - LOD
+              - MPO
+              - NCP
+              - NRT
+              - PIE
+              - PRS
+              - RDI
+              - REB
+              - RLT
+              - RSP
+              - RUL
+              - RWT
+              - SBC
+              - SLS
+              - TOD
+              - TPA
+              - UCM
+          FilingFrequency: 
+            type: string
+            description: '<p>The current filing frequency of the account.</p>'
+            maxLength: 10
+            minLength: 1
+          FilingChannel: 
+            type: string
+            description: '<p>The filing channel of the last return filed for this account.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>API</td><td>Electronic - third party</td></tr><tr><td>AUDIT</td><td>AUDIT</td></tr><tr><td>CNV</td><td>Inland Revenue entered</td></tr><tr><td>CORO</td><td>Correspondence</td></tr><tr><td>EFILE</td><td>Electronic - third party</td></tr><tr><td>FOXI</td><td>Electronic - third party</td></tr><tr><td>FOXIBK</td><td>Electronic - third party</td></tr><tr><td>ONLINE</td><td>Inland Revenue entered</td></tr><tr><td>PAPER</td><td>Paper</td></tr><tr><td>PHONE</td><td>Phone</td></tr><tr><td>PSTCNV</td><td>Inland Revenue entered</td></tr><tr><td>RTNBTC</td><td>Paper</td></tr><tr><td>WEB</td><td>Electronic - myIR</td></tr><tr><td>WEBBLK</td><td>Electronic - myIR</td></tr><tr><td>WEBMBL</td><td>Electronic - myIR</td></tr><tr><td>WEBUNA</td><td>Electronic - myIR</td></tr><tr><td></td><td></td></tr></tbody></table>'
+            maxLength: 6
+            enum: 
+              - API
+              - AUDIT
+              - CNV
+              - CORO
+              - EFILE
+              - FOXI
+              - FOXIBK
+              - ONLINE
+              - PAPER
+              - PHONE
+              - PSTCNV
+              - RTNBTC
+              - WEB
+              - WEBBLK
+              - WEBMBL
+              - WEBUNA
+              - ""
+          Commence: 
+            type: string
+            description: '<p>The date the account was registered.</p>'
+            maxLength: 10
+            minLength: 10
+          Cease: 
+            type: string
+            description: '<p>The date the account ceased operating, or 9999-12-31 if account has not ceased.</p>'
+            maxLength: 10
+          BankAccount: 
+            type: string
+            description: '<p>The refund bank account for the account.</p>'
+          NameOnBankAccount: 
+            type: string
+            description: '<p>The name on the refund bank account for the account.</p>'
+          Address: 
+            type: array
+            items: 
+              type: object
+              required: 
+                - AddressID
+                - Type
+                - Formatted
+                - Street
+                - City
+                - PostCode
+                - Country
+                - Attention
+                - Urbanisation
+                - District
+                - SubDistrict
+                - SubProvince
+                - Updated
+              properties: 
+                AddressID: 
+                  type: number
+                  format: int64
+                  description: '<p>The unique identifier of an address. This is required when updating or deleting an address.</p>'
+                Type: 
+                  type: string
+                  description: '<p>The type of address.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>PRFLOC</td><td>Physical</td></tr><tr><td>PRFMAL</td><td>Mailing</td></tr></tbody></table>'
+                  maxLength: 6
+                  minLength: 3
+                  enum: 
+                    - PRFLOC
+                    - PRFMAL
+                Formatted: 
+                  type: string
+                  description: '<p>The full address formatted into a single string.</p>'
+                  maxLength: 255
+                  minLength: 1
+                Street: 
+                  type: string
+                  description: '<p>The first street line of the address.</p>'
+                  maxLength: 255
+                  minLength: 1
+                Street2: 
+                  type: string
+                  description: '<p>The second street line of the address.</p>'
+                  maxLength: 255
+                Unit: 
+                  type: string
+                  description: '<p>The unit of the address.</p>'
+                  maxLength: 30
+                UnitType: 
+                  type: string
+                  description: '<p>The unit type of the address. Only applicable to addresses for the following countries: United States, Canada</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>#</td><td>#</td></tr><tr><td>APARTMENT</td><td>APARTMENT</td></tr><tr><td>APT</td><td>APARTMENT</td></tr><tr><td>BLDG</td><td>BUILDING</td></tr><tr><td>BSMT</td><td>BASEMENT</td></tr><tr><td>DEPT</td><td>DEPARTMENT</td></tr><tr><td>FL</td><td>FLOOR</td></tr><tr><td>FLAT</td><td>FLAT</td></tr><tr><td>FRNT</td><td>FRONT</td></tr><tr><td>HNGR</td><td>HANGAR</td></tr><tr><td>KIOSK</td><td>KIOSK</td></tr><tr><td>LBBY</td><td>LOBBY</td></tr><tr><td>LOT</td><td>LOT</td></tr><tr><td>LOWR</td><td>LOWER</td></tr><tr><td>NUM</td><td>NUMBER</td></tr><tr><td>NUMBER</td><td>NUMBER</td></tr><tr><td>OFC</td><td>OFFICE</td></tr><tr><td>PH</td><td>PENTHOUSE</td></tr><tr><td>PIER</td><td>PIER</td></tr><tr><td>REAR</td><td>REAR</td></tr><tr><td>RM</td><td>ROOM</td></tr><tr><td>ROOM</td><td>ROOM</td></tr><tr><td>SHOP</td><td>SHOP</td></tr><tr><td>SIDE</td><td>SIDE</td></tr><tr><td>SLIP</td><td>SLIP</td></tr><tr><td>SPC</td><td>SPACE</td></tr><tr><td>STE</td><td>SUITE</td></tr><tr><td>STOP</td><td>STOP</td></tr><tr><td>SUITE</td><td>SUITE</td></tr><tr><td>TRLR</td><td>TRAILER</td></tr><tr><td>UNIT</td><td>UNIT</td></tr><tr><td>UPPR</td><td>UPPER</td></tr><tr><td>VILLA</td><td>VILLA</td></tr><tr><td></td><td></td></tr></tbody></table>'
+                  maxLength: 50
+                  enum: 
+                    - '#'
+                    - APARTMENT
+                    - APT
+                    - BLDG
+                    - BSMT
+                    - DEPT
+                    - FL
+                    - FLAT
+                    - FRNT
+                    - HNGR
+                    - KIOSK
+                    - LBBY
+                    - LOT
+                    - LOWR
+                    - NUM
+                    - NUMBER
+                    - OFC
+                    - PH
+                    - PIER
+                    - REAR
+                    - RM
+                    - ROOM
+                    - SHOP
+                    - SIDE
+                    - SLIP
+                    - SPC
+                    - STE
+                    - STOP
+                    - SUITE
+                    - TRLR
+                    - UNIT
+                    - UPPR
+                    - VILLA
+                    - ""
+                City: 
+                  type: string
+                  description: '<p>The city of the address.</p>'
+                  maxLength: 100
+                State: 
+                  type: string
+                  description: '<p>The state of the address. Represented as the ISO 3166-2 subdivision. This is required for addresses for the following countries: Australia, Canada, United States of America</p>'
+                  maxLength: 6
+                PostCode: 
+                  type: string
+                  description: '<p>The post code of the address. This is required for addresses for the following countries: Australia, Canada, United States of America</p>'
+                  maxLength: 30
+                Country: 
+                  type: string
+                  description: '<p>The ISO 3166-1 alpha-2 country code of the address.</p>'
+                  maxLength: 2
+                  minLength: 2
+                Attention: 
+                  type: string
+                  description: '<p>The person to whom the correspondence is addressed.</p>'
+                  maxLength: 255
+                Urbanisation: 
+                  type: string
+                  description: '<p>The urbanisation of the address. This is required for addresses for the following countries: Australia.</p>'
+                  maxLength: 50
+                District: 
+                  type: string
+                  description: '<p>The district of the address.</p>'
+                  maxLength: 30
+                SubDistrict: 
+                  type: string
+                  description: '<p>The sub district of the address.</p>'
+                  maxLength: 30
+                SubProvince: 
+                  type: string
+                  description: '<p>The sub province of the address.</p>'
+                  maxLength: 50
+                Updated: 
+                  type: string
+                  description: '<p>The date that the address was last updated.</p>'
+                  maxLength: 19
+                  minLength: 10
+          Contact: 
+            type: array
+            items: 
+              type: object
+              required: 
+                - ContactID
+                - ContactType
+                - Updated
+              properties: 
+                ContactID: 
+                  type: number
+                  format: int64
+                  description: '<p>The unique identifier of a contact for the customer. This is required when updating or deleting a contact.</p>'
+                ContactType: 
+                  type: string
+                  description: '<p>The type of contact.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>PRIMRY</td><td>Primary</td></tr><tr><td>SCNDRY</td><td>Secondary</td></tr></tbody></table>'
+                  maxLength: 6
+                  minLength: 6
+                  enum: 
+                    - PRIMRY
+                    - SCNDRY
+                Name: 
+                  type: string
+                  description: '<p>The name of the contact.</p>'
+                  maxLength: 255
+                Updated: 
+                  type: string
+                  description: '<p>The date that the contact was last updated.</p>'
+                  maxLength: 19
+                  minLength: 10
+                Phone: 
+                  type: array
+                  items: 
+                    type: object
+                    required: 
+                      - PhoneID
+                      - PhoneType
+                      - Country
+                      - PhoneNumber
+                    properties: 
+                      PhoneID: 
+                        type: number
+                        format: int64
+                        description: '<p>The unique identifier of a phone number. This is required when updating or deleting a phone number.</p>'
+                      PhoneType: 
+                        type: string
+                        description: '<p>The type of phone.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>BSN</td><td>Business phone</td></tr><tr><td>BSNFAX</td><td>Fax</td></tr><tr><td>CELL</td><td>Mobile phone</td></tr><tr><td>HOM</td><td>Home phone</td></tr></tbody></table>'
+                        maxLength: 6
+                        minLength: 3
+                        enum: 
+                          - BSN
+                          - BSNFAX
+                          - CELL
+                          - HOM
+                      Country: 
+                        type: string
+                        description: '<p>The ISO 3166-1 alpha-2 country code indicating the country for the phone number.</p>'
+                        maxLength: 2
+                        minLength: 2
+                      AreaCode: 
+                        type: string
+                        description: '<p>The area code of the phone number.</p>'
+                        maxLength: 5
+                      PhoneNumber: 
+                        type: string
+                        description: '<p>The phone number, without country code.</p>'
+                        maxLength: 15
+                        minLength: 1
+                      Extension: 
+                        type: string
+                        description: '<p>The extension of the phone number.</p>'
+                        maxLength: 10
+          INC: 
+            type: object
+            required: 
+              - BalanceDate
+              - ProvTaxRatio
+              - GroupMember
+              - GroupRepresentative
+              - ICAGroup
+              - ICAMember
+            properties: 
+              BalanceDate: 
+                type: string
+                description: '<p>The balance date for a non individual income tax account. This is representated as a string in the format of dd-MMM, without a year.</p>'
+                maxLength: 10
+                minLength: 5
+              ExemptionReason: 
+                type: string
+                description: '<p>The excemption reason for a non individual income tax account.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AircraftOpt</td><td>Aircraft Operators</td></tr><tr><td>Amateur</td><td>Amateur Sportsclub</td></tr><tr><td>CharOrg</td><td>Charitable Organisation</td></tr><tr><td>CommHousePro</td><td>Community Housing Providers</td></tr><tr><td>CommTrust</td><td>Community Trusts</td></tr><tr><td>CrossBrdGst</td><td>Cross Border GST</td></tr><tr><td>DairyHerd</td><td>Dairy Herd Society</td></tr><tr><td>DistrictSoc</td><td>District Society</td></tr><tr><td>Embassy</td><td>Embassy/High Commission</td></tr><tr><td>ForeignTrust</td><td>All INC foreign sourced & exempt (NZFT)</td></tr><tr><td>FriendlySoc</td><td>Friendly Society</td></tr><tr><td>FuneralTrust</td><td>Funeral Trust</td></tr><tr><td>GamingMach</td><td>Gaming Machine Operator</td></tr><tr><td>Joint</td><td>Joint Venture</td></tr><tr><td>LocPubAuth</td><td>Local/Public Authority</td></tr><tr><td>NilCompany</td><td>Nil Company</td></tr><tr><td>NonProfitOrg</td><td>Non-Profit Organisation</td></tr><tr><td>NonRes</td><td>Non-Resident</td></tr><tr><td>Other</td><td>Other - Tax Exemption</td></tr><tr><td>PieExempt</td><td>PIE Exempt</td></tr><tr><td>Promoter</td><td>Promoter - Local/Public Authority</td></tr><tr><td>PubPurpCrown</td><td>Public Purpose Crown-Controlled Company</td></tr><tr><td>School</td><td>School</td></tr><tr><td>SciIndRes</td><td>Scientific/Industrial Research</td></tr><tr><td>SettlementID</td><td>Settlement Identity</td></tr><tr><td>SocClubInc</td><td>Society/Club with income less than $1000</td></tr><tr><td>SportsRacing</td><td>Sports/Racing Club</td></tr><tr><td>Tertiary</td><td>Tertiary Education Institution</td></tr><tr><td>VetService</td><td>Vet. service club</td></tr><tr><td></td><td></td></tr></tbody></table>'
+                maxLength: 15
+                enum: 
+                  - AircraftOpt
+                  - Amateur
+                  - CharOrg
+                  - CommHousePro
+                  - CommTrust
+                  - CrossBrdGst
+                  - DairyHerd
+                  - DistrictSoc
+                  - Embassy
+                  - ForeignTrust
+                  - FriendlySoc
+                  - FuneralTrust
+                  - GamingMach
+                  - Joint
+                  - LocPubAuth
+                  - NilCompany
+                  - NonProfitOrg
+                  - NonRes
+                  - Other
+                  - PieExempt
+                  - Promoter
+                  - PubPurpCrown
+                  - School
+                  - SciIndRes
+                  - SettlementID
+                  - SocClubInc
+                  - SportsRacing
+                  - Tertiary
+                  - VetService
+                  - ""
+              ProvTaxMethod: 
+                type: string
+                description: '<p>The provisional tax method for a non individual income tax account.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AIM</td><td>Accounting Income Method</td></tr><tr><td>EST</td><td>Estimation</td></tr><tr><td>RATIO</td><td>Ratio</td></tr><tr><td>STD</td><td>Standard</td></tr><tr><td></td><td></td></tr></tbody></table>'
+                maxLength: 5
+                enum: 
+                  - AIM
+                  - EST
+                  - RATIO
+                  - STD
+                  - ""
+              ProvTaxRatio: 
+                type: number
+                format: double
+                description: '<p>The provisional ratio for a non individual income tax account.</p>'
+              GroupMember: 
+                type: boolean
+                description: '<p>If the non individual income tax account is a member of an income group.</p>'
+              GroupRepresentative: 
+                type: boolean
+                description: '<p>If the non individual income tax account is the representative of an income group.</p>'
+              ICAGroup: 
+                type: boolean
+                description: '<p>If the non individual income tax account is a member of an imputation group.</p>'
+              ICAMember: 
+                type: boolean
+                description: '<p>If the non individual income tax account is a member of an Imputation Tax Group.</p>'
+              TransTasman: 
+                type: boolean
+                description: '<p>If the customer is a trans-tasman customer.</p>'
+              AgentNonResidentInsurer: 
+                type: boolean
+                description: '<p>If the customer is an Agent Non-Resident Insurer.</p>'
+          WFFTC: 
+            type: object
+            required: 
+              - PaymentFrequency
+              - CurrentPayer
+            properties: 
+              PaymentFrequency: 
+                type: string
+                description: '<p>The payment frequency for a Working or Families account.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>FAM1A</td><td>Lump Sum</td></tr><tr><td>FAMA</td><td>Annual</td></tr><tr><td>FAMFTO</td><td>Fortnightly - Odd</td></tr><tr><td>FAMWK1</td><td>Weekly - Tue</td></tr></tbody></table>'
+                maxLength: 6
+                minLength: 4
+                enum: 
+                  - FAM1A
+                  - FAMA
+                  - FAMFTO
+                  - FAMWK1
+              CurrentPayer: 
+                type: string
+                description: '<p>The organisation responsible for paying the Working for Families for this account.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>IRD</td><td>Inland Revenue</td></tr><tr><td>MSD</td><td>Ministry of Social Development</td></tr></tbody></table>'
+                maxLength: 3
+                minLength: 3
+                enum: 
+                  - IRD
+                  - MSD
+          GST: 
+            type: object
+            required: 
+              - AccountingBasis
+              - GroupMember
+              - GroupRepresentative
+            properties: 
+              AccountingBasis: 
+                type: string
+                description: '<p>The accounting basis for this Goods and Services account.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>HYB</td><td>Hybrid</td></tr><tr><td>INV</td><td>Invoice (accruals)</td></tr><tr><td>PYM</td><td>Payments (cash)</td></tr></tbody></table>'
+                maxLength: 3
+                minLength: 3
+                enum: 
+                  - HYB
+                  - INV
+                  - PYM
+              GroupMember: 
+                type: boolean
+                description: '<p>If the Goods and Services Tax account is a member of a GST group.</p>'
+              GroupRepresentative: 
+                type: boolean
+                description: '<p>If the Goods and Services Tax account is the representative of a GST group.</p>'
+  account_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  account_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  account_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  account_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  list_POST_Response200: 
+    type: object
+    required: 
+      - Accounts
+    properties: 
+      Accounts: 
+        type: array
+        items: 
+          type: object
+          required: 
+            - ID
+            - IDType
+          properties: 
+            ID: 
+              type: string
+              description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p>'
+              maxLength: 15
+              minLength: 7
+            IDType: 
+              type: string
+              description: '<p>The type of unique identifier of an account that can be retrieved through the account information service.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACC</td><td>Account ID</td></tr><tr><td>CMPF</td><td>Complying Fund ID</td></tr><tr><td>KSF</td><td>KiwiSaver Schemes ID</td></tr></tbody></table>'
+              maxLength: 6
+              minLength: 3
+              enum: 
+                - ACC
+                - CMPF
+                - KSF
+  list_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  list_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  list_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  list_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message

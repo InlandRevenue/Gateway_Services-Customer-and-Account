@@ -13,7 +13,7 @@ The account API provides either a list of accounts for an identified customer or
 
 ## Key documentation
 
-* View and download the [Account API YAML](Account%202021-02-18.yaml)
+* View and download the [Account API YAML](Account%202021-09-14.yaml)
 * [Download the Account API build pack](Build%20pack%20-%20Account%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON request and response messages 	
 * [View API Reference and URL endpoints](#Account-API-REST-Reference)
