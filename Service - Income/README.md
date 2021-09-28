@@ -67,10 +67,10 @@ The Income API described in this build pack document provides a mechanism for ex
 ## Mock environment information
 ---
 ### Mock emulated service URL
-| End point|  URL|
+| End point| URL |
 |--|--|
- Landing Page | https://income.test.services.ird.govt.nz
- Service Path | https://income.test.services.ird.govt.nz/gateway/income/list |
+| Landing Page | https://income.test.services.ird.govt.nz |
+| Service Path | https://income.test.services.ird.govt.nz/gateway/income/list |
 
 ### Income mock scenarios mindmap
 

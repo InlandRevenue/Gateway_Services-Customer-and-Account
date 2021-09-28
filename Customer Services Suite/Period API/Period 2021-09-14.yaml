@@ -1,0 +1,406 @@
+swagger: '2.0'
+info: 
+  title: Period
+  description: eFile replacement Period API
+  version: ""
+host: 'eservices-test-gateway.npnsp.ird.govt.nz'
+basePath: /secure/gateway/period/
+schemes: 
+  - https
+paths: 
+  /list: 
+    post: 
+      tags: 
+        - Period List
+      summary: Period List
+      description: ""
+      operationId: listPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/list_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/list_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/list_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/list_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/list_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/list_POST_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
+definitions: 
+  list_POST_Request: 
+    type: object
+    required: 
+      - AccountID
+      - AccountIDType
+    properties: 
+      AccountID: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p>'
+        maxLength: 15
+        minLength: 7
+      AccountIDType: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACC</td><td>Account ID</td></tr><tr><td>CMPF</td><td>Complying Fund ID</td></tr><tr><td>KSF</td><td>KiwiSaver Schemes ID</td></tr></tbody></table>'
+        maxLength: 6
+        minLength: 3
+        enum: 
+          - ACC
+          - CMPF
+          - KSF
+      FromDate: 
+        type: string
+        format: date
+        description: '<p>The earliest period to return. If not provided, no lower bound will be applied to the listing of periods.</p>'
+        maxLength: 10
+      ToDate: 
+        type: string
+        format: date
+        description: '<p>The latest period to return. If not provided, no upper bound will be applied to the listing of periods.</p>'
+        maxLength: 10
+  list_POST_Response200: 
+    type: object
+    required: 
+      - Periods
+    properties: 
+      Periods: 
+        type: array
+        items: 
+          type: object
+          required: 
+            - PeriodBegin
+            - PeriodEnd
+            - AccountType
+            - FilingFrequency
+            - NoticeOfAssessmentIssued
+            - ReturnData
+            - DefaultAssessment
+          properties: 
+            PeriodBegin: 
+              type: string
+              description: '<p>The beginning of the period.</p>'
+              maxLength: 10
+              minLength: 10
+            PeriodEnd: 
+              type: string
+              description: '<p>The end of the period. This is used to identify a period.</p>'
+              maxLength: 10
+              minLength: 10
+            AccountType: 
+              type: string
+              description: '<p>The account/product type</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AIL</td><td>Approved issuer levy</td></tr><tr><td>AIP</td><td>Account Information Provider</td></tr><tr><td>CAD</td><td>Casino duty</td></tr><tr><td>CPR</td><td>Child support - Receiving carer</td></tr><tr><td>CRS</td><td>CRS</td></tr><tr><td>DWT</td><td>Dividend withholding tax</td></tr><tr><td>EMP</td><td>Payroll</td></tr><tr><td>EQU</td><td>Income equalisation</td></tr><tr><td>ERA</td><td>Environmental restoration</td></tr><tr><td>FAM</td><td>Working for Families</td></tr><tr><td>FAT</td><td>FATCA</td></tr><tr><td>FBT</td><td>FBT</td></tr><tr><td>FTR</td><td>NZ foreign trust</td></tr><tr><td>GMD</td><td>Gaming machine duty</td></tr><tr><td>GSD</td><td>GST satisfaction of debt</td></tr><tr><td>GST</td><td>GST</td></tr><tr><td>INC</td><td>Income tax</td></tr><tr><td>IPS</td><td>RWT on interest</td></tr><tr><td>KSF</td><td>KiwiSaver scheme</td></tr><tr><td>LOD</td><td>Lottery duty</td></tr><tr><td>MPO</td><td>Multi payment option</td></tr><tr><td>NCP</td><td>Child support - Liable parent</td></tr><tr><td>NRT</td><td>Non-resident withholding tax</td></tr><tr><td>PIE</td><td>Portfolio investment entity</td></tr><tr><td>PRS</td><td>Payroll subsidy</td></tr><tr><td>RDI</td><td>R&D tax incentive</td></tr><tr><td>REB</td><td>Donation tax credit</td></tr><tr><td>RLT</td><td>Residential land withholding tax</td></tr><tr><td>RSP</td><td>Resurgence Support Payment</td></tr><tr><td>RUL</td><td>Rulings and determinations</td></tr><tr><td>RWT</td><td>Resident withholding tax</td></tr><tr><td>SBC</td><td>Small Business loan</td></tr><tr><td>SLS</td><td>Student loan</td></tr><tr><td>TOD</td><td>Totalisator duty</td></tr><tr><td>TPA</td><td>Tax Pooling account</td></tr><tr><td>UCM</td><td>Unclaimed money holder</td></tr></tbody></table>'
+              maxLength: 3
+              minLength: 3
+              enum: 
+                - AIL
+                - AIP
+                - CAD
+                - CPR
+                - CRS
+                - DWT
+                - EMP
+                - EQU
+                - ERA
+                - FAM
+                - FAT
+                - FBT
+                - FTR
+                - GMD
+                - GSD
+                - GST
+                - INC
+                - IPS
+                - KSF
+                - LOD
+                - MPO
+                - NCP
+                - NRT
+                - PIE
+                - PRS
+                - RDI
+                - REB
+                - RLT
+                - RSP
+                - RUL
+                - RWT
+                - SBC
+                - SLS
+                - TOD
+                - TPA
+                - UCM
+            FilingFrequency: 
+              type: string
+              description: '<p>The current filing frequency of the account.</p>'
+              maxLength: 10
+              minLength: 1
+            NoticeOfAssessmentIssued: 
+              type: boolean
+              description: '<p>A notice of assessment has been issued for this period.</p>'
+            ReturnData: 
+              type: boolean
+              description: '<p>A return is either expected or has been filed for this period. More information can be retrieved with the Return Service.</p>'
+            DefaultAssessment: 
+              type: number
+              description: '<p>The amount of any default assessments on this period.</p>'
+            INC: 
+              type: object
+              required: 
+                - BalanceDate
+                - ExtensionOfTime
+                - TaxPooling
+              properties: 
+                BalanceDate: 
+                  type: string
+                  description: '<p>The balance date for this period. This will always be the same as the period end date.</p>'
+                  maxLength: 10
+                  minLength: 10
+                ExtensionOfTime: 
+                  type: boolean
+                  description: '<p>This indicates if an extension of time applies to this filing period.</p>'
+                ExtensionOfTimeType: 
+                  type: string
+                  description: '<table><tbody><tr><th>code</th><th>description</th></tr><tr><td>Agent</td><td>Agent</td></tr><tr><td>Customer</td><td>Customer</td></tr><tr><td></td><td></td></tr></tbody></table>'
+                  enum: 
+                    - Agent
+                    - Customer
+                    - ""
+                DeferredDate: 
+                  type: string
+                  description: '<p>The deferred date of the Income tax return.</p>'
+                  maxLength: 10
+                LossToCarryForward: 
+                  type: number
+                  format: double
+                  description: '<p>The amount of loss to carry forward.</p>'
+                ExcessImputationToCarryForward: 
+                  type: number
+                  format: double
+                  description: '<p>The amount of excess imputation tax credit to carry forward.</p>'
+                ICABalance: 
+                  type: number
+                  format: double
+                  description: '<p>The ICA balance for the period.</p>'
+                MACBalance: 
+                  type: number
+                  format: double
+                  description: '<p>The MAC balance for the period.</p>'
+                TaxPooling: 
+                  type: boolean
+                  description: '<p>Indicates that the customer intends to use tax pooling for the period.</p>'
+                FilingGroup: 
+                  type: string
+                  description: '<table><tbody><tr><th>code</th><th>description</th></tr><tr><td>IITSF2</td><td>Auto issued - more info</td></tr><tr><td>IITSF3</td><td>Auto issued</td></tr><tr><td>IITSG1</td><td>Return filer (IR3)</td></tr><tr><td>IITSG2</td><td>Auto issued - more info</td></tr><tr><td>IITSG3</td><td>Auto issued</td></tr><tr><td>IITSNI</td><td>No assessment required</td></tr><tr><td></td><td></td></tr></tbody></table>'
+                  maxLength: 6
+                  enum: 
+                    - IITSF2
+                    - IITSF3
+                    - IITSG1
+                    - IITSG2
+                    - IITSG3
+                    - IITSNI
+                    - ""
+                LossCarryBack: 
+                  type: boolean
+                  description: '<p>Indicates that the customer is using the loss carry-back on this period.</p>'
+                Prov: 
+                  type: array
+                  items: 
+                    type: object
+                    required: 
+                      - Method
+                      - Ratio
+                      - Amount
+                      - Commence
+                      - Cease
+                    properties: 
+                      Method: 
+                        type: string
+                        description: '<p>The provisional tax method for a non individual income tax account.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AIM</td><td>Accounting Income Method</td></tr><tr><td>EST</td><td>Estimation</td></tr><tr><td>RATIO</td><td>Ratio</td></tr><tr><td>STD</td><td>Standard</td></tr><tr><td></td><td></td></tr></tbody></table>'
+                        maxLength: 5
+                        enum: 
+                          - AIM
+                          - EST
+                          - RATIO
+                          - STD
+                          - ""
+                      Ratio: 
+                        type: number
+                        format: double
+                        description: '<p>The provisional ratio for a non individual income tax account.</p>'
+                      Amount: 
+                        type: number
+                        format: double
+                      Commence: 
+                        type: string
+                        maxLength: 10
+                      Cease: 
+                        type: string
+                        maxLength: 10
+                ResidentialRentalDeductionsToCarryForward: 
+                  type: number
+                  format: double
+                  description: '<p>Residential rental deductions carried forward.</p>'
+                ResearchAndDevelopmentTaxCreditToCarryForward: 
+                  type: number
+                  format: double
+                  description: '<p>The R&D tax incentive losses to carry forward to the following income tax year.</p>'
+  list_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  list_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  list_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  list_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message

@@ -15,7 +15,7 @@ The address API enables the creating, updating, and deleting of the address of a
 ## Key documentation
 
 
-* View and download the [Address API YAML](Address%202020-09-28.yaml)
+* View and download the [Address API YAML](Address%202021-09-14.yaml)
 * [Download the Address API build pack](Build%20pack%20-%20Address%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON request and response messages 	
 * [View API Reference and URL endpoints](#Address-API-REST-Reference)	
