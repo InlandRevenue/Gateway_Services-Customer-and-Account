@@ -1,0 +1,1243 @@
+swagger: '2.0'
+info: 
+  title: Contact
+  description: New eFile Contact API
+  version: ""
+host: 'eservices-test-gateway.npnsp.ird.govt.nz'
+basePath: /secure/gateway/contact/
+schemes: 
+  - https
+paths: 
+  /contact: 
+    delete: 
+      tags: 
+        - Contact Delete
+      summary: Contact Delete
+      description: ""
+      operationId: contactDELETE
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/contact_DELETE_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/contact_DELETE_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/contact_DELETE_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/contact_DELETE_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/contact_DELETE_ResponseDefault'
+    post: 
+      tags: 
+        - Contact Add
+      summary: Contact Add
+      description: ""
+      operationId: contactPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/contact_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/contact_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/contact_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/contact_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/contact_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/contact_POST_ResponseDefault'
+    put: 
+      tags: 
+        - Contact Update
+      summary: Contact Update
+      description: ""
+      operationId: contactPUT
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/contact_PUT_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/contact_PUT_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/contact_PUT_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/contact_PUT_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/contact_PUT_ResponseDefault'
+  /phone: 
+    delete: 
+      tags: 
+        - Phone Delete
+      summary: Phone Delete
+      description: ""
+      operationId: phoneDELETE
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/phone_DELETE_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/phone_DELETE_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/phone_DELETE_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/phone_DELETE_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/phone_DELETE_ResponseDefault'
+    post: 
+      tags: 
+        - Phone Add
+      summary: Phone Add
+      description: ""
+      operationId: phonePOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/phone_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/phone_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/phone_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/phone_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/phone_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/phone_POST_ResponseDefault'
+    put: 
+      tags: 
+        - Phone Update
+      summary: Phone Update
+      description: ""
+      operationId: phonePUT
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/phone_PUT_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/phone_PUT_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/phone_PUT_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/phone_PUT_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/phone_PUT_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
+definitions: 
+  contact_DELETE_Request: 
+    type: object
+    required: 
+      - ContactID
+    properties: 
+      ContactID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a contact for the customer. This is required when updating or deleting a contact.</p>'
+  contact_POST_Request: 
+    type: object
+    required: 
+      - Contact
+    properties: 
+      CustomerID: 
+        type: string
+        description: '<p>The unique identifier of a customer.</p>'
+        maxLength: 10
+      CustomerIDType: 
+        type: string
+        description: '<p>The type of unique identifier of a customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>IRD</td><td>IRD number</td></tr><tr><td>CST</td><td>Customer Identifier</td></tr><tr><td></td><td></td></tr></tbody></table>'
+        maxLength: 3
+        enum: 
+          - IRD
+          - CST
+          - ""
+      AccountID: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p>'
+        maxLength: 15
+      AccountIDType: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACC</td><td>Account ID</td></tr><tr><td></td><td></td></tr></tbody></table>'
+        maxLength: 6
+        enum: 
+          - ACC
+          - ""
+      Contact: 
+        type: object
+        required: 
+          - ContactType
+          - Phone
+        properties: 
+          ContactType: 
+            type: string
+            description: '<p>The type of contact.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>PRIMRY</td><td>Primary</td></tr><tr><td>SCNDRY</td><td>Secondary</td></tr></tbody></table>'
+            maxLength: 6
+            minLength: 6
+            enum: 
+              - PRIMRY
+              - SCNDRY
+          Name: 
+            type: string
+            description: '<p>The name of the contact.</p>'
+            maxLength: 255
+          Phone: 
+            type: array
+            items: 
+              type: object
+              required: 
+                - PhoneType
+                - Country
+                - PhoneNumber
+              properties: 
+                PhoneType: 
+                  type: string
+                  description: '<p>The type of phone.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>BSN</td><td>Business phone</td></tr><tr><td>BSNFAX</td><td>Fax</td></tr><tr><td>CELL</td><td>Mobile phone</td></tr><tr><td>HOM</td><td>Home phone</td></tr></tbody></table>'
+                  maxLength: 6
+                  minLength: 3
+                  enum: 
+                    - BSN
+                    - BSNFAX
+                    - CELL
+                    - HOM
+                Country: 
+                  type: string
+                  description: '<p>The ISO 3166-1 alpha-2 country code indicating the country for the phone number.</p>'
+                  maxLength: 2
+                  minLength: 2
+                AreaCode: 
+                  type: string
+                  description: '<p>The area code of the phone number.</p><table><tbody><tr><th>country</th><th>required</th><th>length</th></tr><tr><td>AF</td><td>True</td><td>3</td><tr><td>AX</td><td>False</td><td>5</td><tr><td>AL</td><td>True</td><td>1</td><tr><td>DZ</td><td>True</td><td>2</td><tr><td>AS</td><td>True</td><td>3</td><tr><td>AI</td><td>True</td><td>3</td><tr><td>AG</td><td>True</td><td>3</td><tr><td>AD</td><td>False</td><td>5</td><tr><td>AO</td><td>True</td><td>2</td><tr><td>AQ</td><td>False</td><td>5</td><tr><td>AR</td><td>True</td><td>2</td><tr><td>AM</td><td>True</td><td>2</td><tr><td>AW</td><td>False</td><td>5</td><tr><td>AT</td><td>False</td><td>5</td><tr><td>AU</td><td>True</td><td>2</td><tr><td>AZ</td><td>True</td><td>2</td><tr><td>BD</td><td>True</td><td>1</td><tr><td>BS</td><td>True</td><td>3</td><tr><td>BH</td><td>True</td><td>1</td><tr><td>BB</td><td>True</td><td>3</td><tr><td>BE</td><td>True</td><td>1</td><tr><td>BJ</td><td>True</td><td>2</td><tr><td>BM</td><td>True</td><td>3</td><tr><td>BY</td><td>True</td><td>2</td><tr><td>BZ</td><td>False</td><td>5</td><tr><td>BT</td><td>True</td><td>1</td><tr><td>BL</td><td>False</td><td>5</td><tr><td>BO</td><td>True</td><td>1</td><tr><td>BA</td><td>True</td><td>2</td><tr><td>BW</td><td>False</td><td>5</td><tr><td>BV</td><td>False</td><td>5</td><tr><td>BQ</td><td>False</td><td>5</td><tr><td>BR</td><td>True</td><td>2</td><tr><td>IO</td><td>False</td><td>5</td><tr><td>BN</td><td>False</td><td>5</td><tr><td>BG</td><td>False</td><td>5</td><tr><td>BF</td><td>True</td><td>4</td><tr><td>BI</td><td>True</td><td>4</td><tr><td>KH</td><td>True</td><td>2</td><tr><td>KY</td><td>True</td><td>3</td><tr><td>CM</td><td>False</td><td>5</td><tr><td>CA</td><td>True</td><td>3</td><tr><td>CF</td><td>False</td><td>5</td><tr><td>CV</td><td>True</td><td>3</td><tr><td>CD</td><td>True</td><td>1</td><tr><td>TD</td><td>False</td><td>5</td><tr><td>CL</td><td>True</td><td>2</td><tr><td>CN</td><td>False</td><td>5</td><tr><td>CX</td><td>False</td><td>5</td><tr><td>CI</td><td>True</td><td>2</td><tr><td>CC</td><td>False</td><td>5</td><tr><td>CG</td><td>True</td><td>4</td><tr><td>CO</td><td>True</td><td>1</td><tr><td>KM</td><td>True</td><td>3</td><tr><td>CK</td><td>False</td><td>5</td><tr><td>CR</td><td>False</td><td>5</td><tr><td>HR</td><td>True</td><td>2</td><tr><td>CU</td><td>False</td><td>5</td><tr><td>CW</td><td>False</td><td>5</td><tr><td>CY</td><td>True</td><td>2</td><tr><td>CZ</td><td>True</td><td>3</td><tr><td>DK</td><td>False</td><td>5</td><tr><td>DJ</td><td>True</td><td>2</td><tr><td>DM</td><td>True</td><td>3</td><tr><td>DO</td><td>True</td><td>3</td><tr><td>EC</td><td>True</td><td>1</td><tr><td>EG</td><td>True</td><td>2</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>GQ</td><td>True</td><td>2</td><tr><td>ER</td><td>True</td><td>1</td><tr><td>SV</td><td>False</td><td>5</td><tr><td>EE</td><td>False</td><td>5</td><tr><td>ET</td><td>True</td><td>2</td><tr><td>FK</td><td>False</td><td>5</td><tr><td>FO</td><td>False</td><td>5</td><tr><td>FJ</td><td>False</td><td>5</td><tr><td>FI</td><td>False</td><td>5</td><tr><td>FR</td><td>True</td><td>2</td><tr><td>GF</td><td>True</td><td>2</td><tr><td>PF</td><td>False</td><td>5</td><tr><td>TF</td><td>True</td><td>2</td><tr><td>GA</td><td>True</td><td>1</td><tr><td>GM</td><td>False</td><td>5</td><tr><td>GE</td><td>True</td><td>3</td><tr><td>DE</td><td>False</td><td>5</td><tr><td>GH</td><td>True</td><td>2</td><tr><td>GI</td><td>False</td><td>5</td><tr><td>GD</td><td>True</td><td>3</td><tr><td>GL</td><td>True</td><td>2</td><tr><td>GR</td><td>False</td><td>5</td><tr><td>GT</td><td>False</td><td>5</td><tr><td>GW</td><td>True</td><td>2</td><tr><td>GP</td><td>True</td><td>2</td><tr><td>GN</td><td>False</td><td>5</td><tr><td>GU</td><td>True</td><td>3</td><tr><td>GG</td><td>False</td><td>5</td><tr><td>GY</td><td>True</td><td>3</td><tr><td>HT</td><td>False</td><td>5</td><tr><td>HM</td><td>False</td><td>5</td><tr><td>HK</td><td>False</td><td>5</td><tr><td>HN</td><td>False</td><td>5</td><tr><td>VA</td><td>True</td><td>2</td><tr><td>HU</td><td>False</td><td>5</td><tr><td>IS</td><td>False</td><td>5</td><tr><td>ID</td><td>True</td><td>3</td><tr><td>IN</td><td>False</td><td>5</td><tr><td>IR</td><td>False</td><td>5</td><tr><td>IE</td><td>True</td><td>3</td><tr><td>IQ</td><td>False</td><td>5</td><tr><td>IM</td><td>False</td><td>5</td><tr><td>IL</td><td>True</td><td>2</td><tr><td>IT</td><td>False</td><td>5</td><tr><td>JM</td><td>True</td><td>3</td><tr><td>JP</td><td>True</td><td>3</td><tr><td>JE</td><td>False</td><td>5</td><tr><td>JO</td><td>True</td><td>1</td><tr><td>KZ</td><td>False</td><td>5</td><tr><td>KE</td><td>True</td><td>2</td><tr><td>KI</td><td>False</td><td>5</td><tr><td>KP</td><td>False</td><td>5</td><tr><td>XK</td><td>False</td><td>5</td><tr><td>KW</td><td>True</td><td>3</td><tr><td>KG</td><td>False</td><td>5</td><tr><td>LA</td><td>True</td><td>2</td><tr><td>LV</td><td>False</td><td>5</td><tr><td>LB</td><td>True</td><td>1</td><tr><td>LS</td><td>True</td><td>2</td><tr><td>LR</td><td>False</td><td>5</td><tr><td>LY</td><td>True</td><td>3</td><tr><td>LI</td><td>False</td><td>5</td><tr><td>LT</td><td>False</td><td>5</td><tr><td>LU</td><td>True</td><td>2</td><tr><td>MO</td><td>False</td><td>5</td><tr><td>MG</td><td>True</td><td>2</td><tr><td>MK</td><td>True</td><td>1</td><tr><td>MF</td><td>False</td><td>5</td><tr><td>MH</td><td>False</td><td>5</td><tr><td>ML</td><td>False</td><td>5</td><tr><td>MY</td><td>False</td><td>5</td><tr><td>MQ</td><td>True</td><td>2</td><tr><td>MV</td><td>False</td><td>5</td><tr><td>MR</td><td>False</td><td>5</td><tr><td>MW</td><td>False</td><td>5</td><tr><td>YT</td><td>True</td><td>2</td><tr><td>MX</td><td>True</td><td>3</td><tr><td>FM</td><td>True</td><td>3</td><tr><td>MN</td><td>False</td><td>5</td><tr><td>MC</td><td>False</td><td>5</td><tr><td>MD</td><td>False</td><td>5</td><tr><td>MS</td><td>True</td><td>3</td><tr><td>ME</td><td>True</td><td>2</td><tr><td>MA</td><td>False</td><td>5</td><tr><td>MZ</td><td>False</td><td>5</td><tr><td>MU</td><td>False</td><td>5</td><tr><td>MT</td><td>False</td><td>5</td><tr><td>MM</td><td>False</td><td>5</td><tr><td>NA</td><td>False</td><td>5</td><tr><td>NR</td><td>False</td><td>5</td><tr><td>NC</td><td>False</td><td>5</td><tr><td>NP</td><td>False</td><td>5</td><tr><td>NL</td><td>False</td><td>5</td><tr><td>NI</td><td>False</td><td>5</td><tr><td>NG</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>NE</td><td>False</td><td>5</td><tr><td>NU</td><td>False</td><td>5</td><tr><td>MP</td><td>True</td><td>3</td><tr><td>NF</td><td>True</td><td>1</td><tr><td>NO</td><td>True</td><td>2</td><tr><td>OM</td><td>False</td><td>5</td><tr><td>XX</td><td>False</td><td>5</td><tr><td>PK</td><td>False</td><td>5</td><tr><td>PW</td><td>True</td><td>3</td><tr><td>PA</td><td>False</td><td>5</td><tr><td>PY</td><td>False</td><td>5</td><tr><td>PS</td><td>False</td><td>5</td><tr><td>PE</td><td>False</td><td>5</td><tr><td>PH</td><td>False</td><td>5</td><tr><td>PN</td><td>True</td><td>2</td><tr><td>PS</td><td>False</td><td>5</td><tr><td>PG</td><td>False</td><td>5</td><tr><td>PL</td><td>True</td><td>2</td><tr><td>PT</td><td>False</td><td>5</td><tr><td>PR</td><td>True</td><td>3</td><tr><td>QA</td><td>False</td><td>5</td><tr><td>RE</td><td>True</td><td>2</td><tr><td>RO</td><td>False</td><td>5</td><tr><td>RU</td><td>False</td><td>5</td><tr><td>RW</td><td>True</td><td>3</td><tr><td>SA</td><td>True</td><td>2</td><tr><td>ZA</td><td>True</td><td>3</td><tr><td>WS</td><td>False</td><td>5</td><tr><td>SM</td><td>True</td><td>4</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>SN</td><td>False</td><td>5</td><tr><td>RS</td><td>False</td><td>5</td><tr><td>SC</td><td>False</td><td>5</td><tr><td>GS</td><td>False</td><td>5</td><tr><td>SL</td><td>True</td><td>2</td><tr><td>SG</td><td>False</td><td>5</td><tr><td>SJ</td><td>True</td><td>2</td><tr><td>KN</td><td>True</td><td>3</td><tr><td>KR</td><td>False</td><td>5</td><tr><td>LK</td><td>True</td><td>3</td><tr><td>SK</td><td>True</td><td>2</td><tr><td>SI</td><td>False</td><td>5</td><tr><td>SB</td><td>False</td><td>5</td><tr><td>SO</td><td>True</td><td>2</td><tr><td>ES</td><td>False</td><td>5</td><tr><td>PM</td><td>True</td><td>2</td><tr><td>SS</td><td>False</td><td>5</td><tr><td>LC</td><td>True</td><td>3</td><tr><td>SH</td><td>False</td><td>5</td><tr><td>ST</td><td>False</td><td>5</td><tr><td>SD</td><td>False</td><td>5</td><tr><td>SR</td><td>False</td><td>5</td><tr><td>VC</td><td>True</td><td>3</td><tr><td>SZ</td><td>True</td><td>2</td><tr><td>SE</td><td>False</td><td>5</td><tr><td>CH</td><td>True</td><td>2</td><tr><td>SX</td><td>False</td><td>5</td><tr><td>SY</td><td>False</td><td>5</td><tr><td>TC</td><td>True</td><td>3</td><tr><td>TW</td><td>False</td><td>5</td><tr><td>TJ</td><td>False</td><td>5</td><tr><td>TZ</td><td>False</td><td>5</td><tr><td>TT</td><td>True</td><td>3</td><tr><td>TH</td><td>False</td><td>5</td><tr><td>TL</td><td>False</td><td>5</td><tr><td>TG</td><td>True</td><td>3</td><tr><td>TK</td><td>False</td><td>5</td><tr><td>TO</td><td>True</td><td>2</td><tr><td>TM</td><td>True</td><td>3</td><tr><td>TN</td><td>True</td><td>2</td><tr><td>TR</td><td>True</td><td>3</td><tr><td>TV</td><td>False</td><td>5</td><tr><td>AE</td><td>True</td><td>2</td><tr><td>UG</td><td>False</td><td>5</td><tr><td>UA</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>UY</td><td>False</td><td>5</td><tr><td>US</td><td>True</td><td>3</td><tr><td>UM</td><td>True</td><td>3</td><tr><td>UZ</td><td>False</td><td>5</td><tr><td>VU</td><td>False</td><td>5</td><tr><td>VE</td><td>True</td><td>3</td><tr><td>VG</td><td>True</td><td>3</td><tr><td>VN</td><td>False</td><td>5</td><tr><td>VI</td><td>True</td><td>3</td><tr><td>WF</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>EH</td><td>False</td><td>5</td><tr><td>YE</td><td>False</td><td>5</td><tr><td>ZM</td><td>True</td><td>3</td><tr><td>ZW</td><td>False</td><td>5</td></tbody></table>'
+                  maxLength: 5
+                PhoneNumber: 
+                  type: string
+                  description: '<p>The phone number, without country code.</p>'
+                  maxLength: 15
+                  minLength: 1
+                Extension: 
+                  type: string
+                  description: '<p>The extension of the phone number.</p>'
+                  maxLength: 10
+  contact_PUT_Request: 
+    type: object
+    required: 
+      - ContactID
+      - Contact
+    properties: 
+      ContactID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a contact for the customer. This is required when updating or deleting a contact.</p>'
+      Contact: 
+        type: object
+        required: 
+          - Name
+        properties: 
+          Name: 
+            type: string
+            description: '<p>The name of the contact.</p>'
+            maxLength: 255
+            minLength: 1
+  phone_DELETE_Request: 
+    type: object
+    required: 
+      - PhoneID
+    properties: 
+      PhoneID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a phone number. This is required when updating or deleting a phone number.</p>'
+  phone_POST_Request: 
+    type: object
+    required: 
+      - ContactID
+    properties: 
+      ContactID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a contact for the customer. This is required when updating or deleting a contact.</p>'
+      Phone: 
+        type: object
+        required: 
+          - PhoneType
+          - Country
+          - PhoneNumber
+        properties: 
+          PhoneType: 
+            type: string
+            description: '<p>The type of phone.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>BSN</td><td>Business phone</td></tr><tr><td>BSNFAX</td><td>Fax</td></tr><tr><td>CELL</td><td>Mobile phone</td></tr><tr><td>HOM</td><td>Home phone</td></tr></tbody></table>'
+            maxLength: 6
+            minLength: 3
+            enum: 
+              - BSN
+              - BSNFAX
+              - CELL
+              - HOM
+          Country: 
+            type: string
+            description: '<p>The ISO 3166-1 alpha-2 country code indicating the country for the phone number.</p>'
+            maxLength: 2
+            minLength: 2
+          AreaCode: 
+            type: string
+            description: '<p>The area code of the phone number.</p><table><tbody><tr><th>country</th><th>required</th><th>length</th></tr><tr><td>AF</td><td>True</td><td>3</td><tr><td>AX</td><td>False</td><td>5</td><tr><td>AL</td><td>True</td><td>1</td><tr><td>DZ</td><td>True</td><td>2</td><tr><td>AS</td><td>True</td><td>3</td><tr><td>AI</td><td>True</td><td>3</td><tr><td>AG</td><td>True</td><td>3</td><tr><td>AD</td><td>False</td><td>5</td><tr><td>AO</td><td>True</td><td>2</td><tr><td>AQ</td><td>False</td><td>5</td><tr><td>AR</td><td>True</td><td>2</td><tr><td>AM</td><td>True</td><td>2</td><tr><td>AW</td><td>False</td><td>5</td><tr><td>AT</td><td>False</td><td>5</td><tr><td>AU</td><td>True</td><td>2</td><tr><td>AZ</td><td>True</td><td>2</td><tr><td>BD</td><td>True</td><td>1</td><tr><td>BS</td><td>True</td><td>3</td><tr><td>BH</td><td>True</td><td>1</td><tr><td>BB</td><td>True</td><td>3</td><tr><td>BE</td><td>True</td><td>1</td><tr><td>BJ</td><td>True</td><td>2</td><tr><td>BM</td><td>True</td><td>3</td><tr><td>BY</td><td>True</td><td>2</td><tr><td>BZ</td><td>False</td><td>5</td><tr><td>BT</td><td>True</td><td>1</td><tr><td>BL</td><td>False</td><td>5</td><tr><td>BO</td><td>True</td><td>1</td><tr><td>BA</td><td>True</td><td>2</td><tr><td>BW</td><td>False</td><td>5</td><tr><td>BV</td><td>False</td><td>5</td><tr><td>BQ</td><td>False</td><td>5</td><tr><td>BR</td><td>True</td><td>2</td><tr><td>IO</td><td>False</td><td>5</td><tr><td>BN</td><td>False</td><td>5</td><tr><td>BG</td><td>False</td><td>5</td><tr><td>BF</td><td>True</td><td>4</td><tr><td>BI</td><td>True</td><td>4</td><tr><td>KH</td><td>True</td><td>2</td><tr><td>KY</td><td>True</td><td>3</td><tr><td>CM</td><td>False</td><td>5</td><tr><td>CA</td><td>True</td><td>3</td><tr><td>CF</td><td>False</td><td>5</td><tr><td>CV</td><td>True</td><td>3</td><tr><td>CD</td><td>True</td><td>1</td><tr><td>TD</td><td>False</td><td>5</td><tr><td>CL</td><td>True</td><td>2</td><tr><td>CN</td><td>False</td><td>5</td><tr><td>CX</td><td>False</td><td>5</td><tr><td>CI</td><td>True</td><td>2</td><tr><td>CC</td><td>False</td><td>5</td><tr><td>CG</td><td>True</td><td>4</td><tr><td>CO</td><td>True</td><td>1</td><tr><td>KM</td><td>True</td><td>3</td><tr><td>CK</td><td>False</td><td>5</td><tr><td>CR</td><td>False</td><td>5</td><tr><td>HR</td><td>True</td><td>2</td><tr><td>CU</td><td>False</td><td>5</td><tr><td>CW</td><td>False</td><td>5</td><tr><td>CY</td><td>True</td><td>2</td><tr><td>CZ</td><td>True</td><td>3</td><tr><td>DK</td><td>False</td><td>5</td><tr><td>DJ</td><td>True</td><td>2</td><tr><td>DM</td><td>True</td><td>3</td><tr><td>DO</td><td>True</td><td>3</td><tr><td>EC</td><td>True</td><td>1</td><tr><td>EG</td><td>True</td><td>2</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>GQ</td><td>True</td><td>2</td><tr><td>ER</td><td>True</td><td>1</td><tr><td>SV</td><td>False</td><td>5</td><tr><td>EE</td><td>False</td><td>5</td><tr><td>ET</td><td>True</td><td>2</td><tr><td>FK</td><td>False</td><td>5</td><tr><td>FO</td><td>False</td><td>5</td><tr><td>FJ</td><td>False</td><td>5</td><tr><td>FI</td><td>False</td><td>5</td><tr><td>FR</td><td>True</td><td>2</td><tr><td>GF</td><td>True</td><td>2</td><tr><td>PF</td><td>False</td><td>5</td><tr><td>TF</td><td>True</td><td>2</td><tr><td>GA</td><td>True</td><td>1</td><tr><td>GM</td><td>False</td><td>5</td><tr><td>GE</td><td>True</td><td>3</td><tr><td>DE</td><td>False</td><td>5</td><tr><td>GH</td><td>True</td><td>2</td><tr><td>GI</td><td>False</td><td>5</td><tr><td>GD</td><td>True</td><td>3</td><tr><td>GL</td><td>True</td><td>2</td><tr><td>GR</td><td>False</td><td>5</td><tr><td>GT</td><td>False</td><td>5</td><tr><td>GW</td><td>True</td><td>2</td><tr><td>GP</td><td>True</td><td>2</td><tr><td>GN</td><td>False</td><td>5</td><tr><td>GU</td><td>True</td><td>3</td><tr><td>GG</td><td>False</td><td>5</td><tr><td>GY</td><td>True</td><td>3</td><tr><td>HT</td><td>False</td><td>5</td><tr><td>HM</td><td>False</td><td>5</td><tr><td>HK</td><td>False</td><td>5</td><tr><td>HN</td><td>False</td><td>5</td><tr><td>VA</td><td>True</td><td>2</td><tr><td>HU</td><td>False</td><td>5</td><tr><td>IS</td><td>False</td><td>5</td><tr><td>ID</td><td>True</td><td>3</td><tr><td>IN</td><td>False</td><td>5</td><tr><td>IR</td><td>False</td><td>5</td><tr><td>IE</td><td>True</td><td>3</td><tr><td>IQ</td><td>False</td><td>5</td><tr><td>IM</td><td>False</td><td>5</td><tr><td>IL</td><td>True</td><td>2</td><tr><td>IT</td><td>False</td><td>5</td><tr><td>JM</td><td>True</td><td>3</td><tr><td>JP</td><td>True</td><td>3</td><tr><td>JE</td><td>False</td><td>5</td><tr><td>JO</td><td>True</td><td>1</td><tr><td>KZ</td><td>False</td><td>5</td><tr><td>KE</td><td>True</td><td>2</td><tr><td>KI</td><td>False</td><td>5</td><tr><td>KP</td><td>False</td><td>5</td><tr><td>XK</td><td>False</td><td>5</td><tr><td>KW</td><td>True</td><td>3</td><tr><td>KG</td><td>False</td><td>5</td><tr><td>LA</td><td>True</td><td>2</td><tr><td>LV</td><td>False</td><td>5</td><tr><td>LB</td><td>True</td><td>1</td><tr><td>LS</td><td>True</td><td>2</td><tr><td>LR</td><td>False</td><td>5</td><tr><td>LY</td><td>True</td><td>3</td><tr><td>LI</td><td>False</td><td>5</td><tr><td>LT</td><td>False</td><td>5</td><tr><td>LU</td><td>True</td><td>2</td><tr><td>MO</td><td>False</td><td>5</td><tr><td>MG</td><td>True</td><td>2</td><tr><td>MK</td><td>True</td><td>1</td><tr><td>MF</td><td>False</td><td>5</td><tr><td>MH</td><td>False</td><td>5</td><tr><td>ML</td><td>False</td><td>5</td><tr><td>MY</td><td>False</td><td>5</td><tr><td>MQ</td><td>True</td><td>2</td><tr><td>MV</td><td>False</td><td>5</td><tr><td>MR</td><td>False</td><td>5</td><tr><td>MW</td><td>False</td><td>5</td><tr><td>YT</td><td>True</td><td>2</td><tr><td>MX</td><td>True</td><td>3</td><tr><td>FM</td><td>True</td><td>3</td><tr><td>MN</td><td>False</td><td>5</td><tr><td>MC</td><td>False</td><td>5</td><tr><td>MD</td><td>False</td><td>5</td><tr><td>MS</td><td>True</td><td>3</td><tr><td>ME</td><td>True</td><td>2</td><tr><td>MA</td><td>False</td><td>5</td><tr><td>MZ</td><td>False</td><td>5</td><tr><td>MU</td><td>False</td><td>5</td><tr><td>MT</td><td>False</td><td>5</td><tr><td>MM</td><td>False</td><td>5</td><tr><td>NA</td><td>False</td><td>5</td><tr><td>NR</td><td>False</td><td>5</td><tr><td>NC</td><td>False</td><td>5</td><tr><td>NP</td><td>False</td><td>5</td><tr><td>NL</td><td>False</td><td>5</td><tr><td>NI</td><td>False</td><td>5</td><tr><td>NG</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>NE</td><td>False</td><td>5</td><tr><td>NU</td><td>False</td><td>5</td><tr><td>MP</td><td>True</td><td>3</td><tr><td>NF</td><td>True</td><td>1</td><tr><td>NO</td><td>True</td><td>2</td><tr><td>OM</td><td>False</td><td>5</td><tr><td>XX</td><td>False</td><td>5</td><tr><td>PK</td><td>False</td><td>5</td><tr><td>PW</td><td>True</td><td>3</td><tr><td>PA</td><td>False</td><td>5</td><tr><td>PY</td><td>False</td><td>5</td><tr><td>PS</td><td>False</td><td>5</td><tr><td>PE</td><td>False</td><td>5</td><tr><td>PH</td><td>False</td><td>5</td><tr><td>PN</td><td>True</td><td>2</td><tr><td>PS</td><td>False</td><td>5</td><tr><td>PG</td><td>False</td><td>5</td><tr><td>PL</td><td>True</td><td>2</td><tr><td>PT</td><td>False</td><td>5</td><tr><td>PR</td><td>True</td><td>3</td><tr><td>QA</td><td>False</td><td>5</td><tr><td>RE</td><td>True</td><td>2</td><tr><td>RO</td><td>False</td><td>5</td><tr><td>RU</td><td>False</td><td>5</td><tr><td>RW</td><td>True</td><td>3</td><tr><td>SA</td><td>True</td><td>2</td><tr><td>ZA</td><td>True</td><td>3</td><tr><td>WS</td><td>False</td><td>5</td><tr><td>SM</td><td>True</td><td>4</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>SN</td><td>False</td><td>5</td><tr><td>RS</td><td>False</td><td>5</td><tr><td>SC</td><td>False</td><td>5</td><tr><td>GS</td><td>False</td><td>5</td><tr><td>SL</td><td>True</td><td>2</td><tr><td>SG</td><td>False</td><td>5</td><tr><td>SJ</td><td>True</td><td>2</td><tr><td>KN</td><td>True</td><td>3</td><tr><td>KR</td><td>False</td><td>5</td><tr><td>LK</td><td>True</td><td>3</td><tr><td>SK</td><td>True</td><td>2</td><tr><td>SI</td><td>False</td><td>5</td><tr><td>SB</td><td>False</td><td>5</td><tr><td>SO</td><td>True</td><td>2</td><tr><td>ES</td><td>False</td><td>5</td><tr><td>PM</td><td>True</td><td>2</td><tr><td>SS</td><td>False</td><td>5</td><tr><td>LC</td><td>True</td><td>3</td><tr><td>SH</td><td>False</td><td>5</td><tr><td>ST</td><td>False</td><td>5</td><tr><td>SD</td><td>False</td><td>5</td><tr><td>SR</td><td>False</td><td>5</td><tr><td>VC</td><td>True</td><td>3</td><tr><td>SZ</td><td>True</td><td>2</td><tr><td>SE</td><td>False</td><td>5</td><tr><td>CH</td><td>True</td><td>2</td><tr><td>SX</td><td>False</td><td>5</td><tr><td>SY</td><td>False</td><td>5</td><tr><td>TC</td><td>True</td><td>3</td><tr><td>TW</td><td>False</td><td>5</td><tr><td>TJ</td><td>False</td><td>5</td><tr><td>TZ</td><td>False</td><td>5</td><tr><td>TT</td><td>True</td><td>3</td><tr><td>TH</td><td>False</td><td>5</td><tr><td>TL</td><td>False</td><td>5</td><tr><td>TG</td><td>True</td><td>3</td><tr><td>TK</td><td>False</td><td>5</td><tr><td>TO</td><td>True</td><td>2</td><tr><td>TM</td><td>True</td><td>3</td><tr><td>TN</td><td>True</td><td>2</td><tr><td>TR</td><td>True</td><td>3</td><tr><td>TV</td><td>False</td><td>5</td><tr><td>AE</td><td>True</td><td>2</td><tr><td>UG</td><td>False</td><td>5</td><tr><td>UA</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>UY</td><td>False</td><td>5</td><tr><td>US</td><td>True</td><td>3</td><tr><td>UM</td><td>True</td><td>3</td><tr><td>UZ</td><td>False</td><td>5</td><tr><td>VU</td><td>False</td><td>5</td><tr><td>VE</td><td>True</td><td>3</td><tr><td>VG</td><td>True</td><td>3</td><tr><td>VN</td><td>False</td><td>5</td><tr><td>VI</td><td>True</td><td>3</td><tr><td>WF</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>EH</td><td>False</td><td>5</td><tr><td>YE</td><td>False</td><td>5</td><tr><td>ZM</td><td>True</td><td>3</td><tr><td>ZW</td><td>False</td><td>5</td></tbody></table>'
+            maxLength: 5
+          PhoneNumber: 
+            type: string
+            description: '<p>The phone number, without country code.</p>'
+            maxLength: 15
+            minLength: 1
+          Extension: 
+            type: string
+            description: '<p>The extension of the phone number.</p>'
+            maxLength: 10
+  phone_PUT_Request: 
+    type: object
+    required: 
+      - PhoneID
+    properties: 
+      PhoneID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a phone number. This is required when updating or deleting a phone number.</p>'
+      Phone: 
+        type: object
+        required: 
+          - PhoneType
+          - Country
+          - PhoneNumber
+        properties: 
+          PhoneType: 
+            type: string
+            description: '<p>The type of phone.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>BSN</td><td>Business phone</td></tr><tr><td>BSNFAX</td><td>Fax</td></tr><tr><td>CELL</td><td>Mobile phone</td></tr><tr><td>HOM</td><td>Home phone</td></tr></tbody></table>'
+            maxLength: 6
+            minLength: 3
+            enum: 
+              - BSN
+              - BSNFAX
+              - CELL
+              - HOM
+          Country: 
+            type: string
+            description: '<p>The ISO 3166-1 alpha-2 country code indicating the country for the phone number.</p>'
+            maxLength: 2
+            minLength: 2
+          AreaCode: 
+            type: string
+            description: '<p>The area code of the phone number.</p><table><tbody><tr><th>country</th><th>required</th><th>length</th></tr><tr><td>AF</td><td>True</td><td>3</td><tr><td>AX</td><td>False</td><td>5</td><tr><td>AL</td><td>True</td><td>1</td><tr><td>DZ</td><td>True</td><td>2</td><tr><td>AS</td><td>True</td><td>3</td><tr><td>AI</td><td>True</td><td>3</td><tr><td>AG</td><td>True</td><td>3</td><tr><td>AD</td><td>False</td><td>5</td><tr><td>AO</td><td>True</td><td>2</td><tr><td>AQ</td><td>False</td><td>5</td><tr><td>AR</td><td>True</td><td>2</td><tr><td>AM</td><td>True</td><td>2</td><tr><td>AW</td><td>False</td><td>5</td><tr><td>AT</td><td>False</td><td>5</td><tr><td>AU</td><td>True</td><td>2</td><tr><td>AZ</td><td>True</td><td>2</td><tr><td>BD</td><td>True</td><td>1</td><tr><td>BS</td><td>True</td><td>3</td><tr><td>BH</td><td>True</td><td>1</td><tr><td>BB</td><td>True</td><td>3</td><tr><td>BE</td><td>True</td><td>1</td><tr><td>BJ</td><td>True</td><td>2</td><tr><td>BM</td><td>True</td><td>3</td><tr><td>BY</td><td>True</td><td>2</td><tr><td>BZ</td><td>False</td><td>5</td><tr><td>BT</td><td>True</td><td>1</td><tr><td>BL</td><td>False</td><td>5</td><tr><td>BO</td><td>True</td><td>1</td><tr><td>BA</td><td>True</td><td>2</td><tr><td>BW</td><td>False</td><td>5</td><tr><td>BV</td><td>False</td><td>5</td><tr><td>BQ</td><td>False</td><td>5</td><tr><td>BR</td><td>True</td><td>2</td><tr><td>IO</td><td>False</td><td>5</td><tr><td>BN</td><td>False</td><td>5</td><tr><td>BG</td><td>False</td><td>5</td><tr><td>BF</td><td>True</td><td>4</td><tr><td>BI</td><td>True</td><td>4</td><tr><td>KH</td><td>True</td><td>2</td><tr><td>KY</td><td>True</td><td>3</td><tr><td>CM</td><td>False</td><td>5</td><tr><td>CA</td><td>True</td><td>3</td><tr><td>CF</td><td>False</td><td>5</td><tr><td>CV</td><td>True</td><td>3</td><tr><td>CD</td><td>True</td><td>1</td><tr><td>TD</td><td>False</td><td>5</td><tr><td>CL</td><td>True</td><td>2</td><tr><td>CN</td><td>False</td><td>5</td><tr><td>CX</td><td>False</td><td>5</td><tr><td>CI</td><td>True</td><td>2</td><tr><td>CC</td><td>False</td><td>5</td><tr><td>CG</td><td>True</td><td>4</td><tr><td>CO</td><td>True</td><td>1</td><tr><td>KM</td><td>True</td><td>3</td><tr><td>CK</td><td>False</td><td>5</td><tr><td>CR</td><td>False</td><td>5</td><tr><td>HR</td><td>True</td><td>2</td><tr><td>CU</td><td>False</td><td>5</td><tr><td>CW</td><td>False</td><td>5</td><tr><td>CY</td><td>True</td><td>2</td><tr><td>CZ</td><td>True</td><td>3</td><tr><td>DK</td><td>False</td><td>5</td><tr><td>DJ</td><td>True</td><td>2</td><tr><td>DM</td><td>True</td><td>3</td><tr><td>DO</td><td>True</td><td>3</td><tr><td>EC</td><td>True</td><td>1</td><tr><td>EG</td><td>True</td><td>2</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>GQ</td><td>True</td><td>2</td><tr><td>ER</td><td>True</td><td>1</td><tr><td>SV</td><td>False</td><td>5</td><tr><td>EE</td><td>False</td><td>5</td><tr><td>ET</td><td>True</td><td>2</td><tr><td>FK</td><td>False</td><td>5</td><tr><td>FO</td><td>False</td><td>5</td><tr><td>FJ</td><td>False</td><td>5</td><tr><td>FI</td><td>False</td><td>5</td><tr><td>FR</td><td>True</td><td>2</td><tr><td>GF</td><td>True</td><td>2</td><tr><td>PF</td><td>False</td><td>5</td><tr><td>TF</td><td>True</td><td>2</td><tr><td>GA</td><td>True</td><td>1</td><tr><td>GM</td><td>False</td><td>5</td><tr><td>GE</td><td>True</td><td>3</td><tr><td>DE</td><td>False</td><td>5</td><tr><td>GH</td><td>True</td><td>2</td><tr><td>GI</td><td>False</td><td>5</td><tr><td>GD</td><td>True</td><td>3</td><tr><td>GL</td><td>True</td><td>2</td><tr><td>GR</td><td>False</td><td>5</td><tr><td>GT</td><td>False</td><td>5</td><tr><td>GW</td><td>True</td><td>2</td><tr><td>GP</td><td>True</td><td>2</td><tr><td>GN</td><td>False</td><td>5</td><tr><td>GU</td><td>True</td><td>3</td><tr><td>GG</td><td>False</td><td>5</td><tr><td>GY</td><td>True</td><td>3</td><tr><td>HT</td><td>False</td><td>5</td><tr><td>HM</td><td>False</td><td>5</td><tr><td>HK</td><td>False</td><td>5</td><tr><td>HN</td><td>False</td><td>5</td><tr><td>VA</td><td>True</td><td>2</td><tr><td>HU</td><td>False</td><td>5</td><tr><td>IS</td><td>False</td><td>5</td><tr><td>ID</td><td>True</td><td>3</td><tr><td>IN</td><td>False</td><td>5</td><tr><td>IR</td><td>False</td><td>5</td><tr><td>IE</td><td>True</td><td>3</td><tr><td>IQ</td><td>False</td><td>5</td><tr><td>IM</td><td>False</td><td>5</td><tr><td>IL</td><td>True</td><td>2</td><tr><td>IT</td><td>False</td><td>5</td><tr><td>JM</td><td>True</td><td>3</td><tr><td>JP</td><td>True</td><td>3</td><tr><td>JE</td><td>False</td><td>5</td><tr><td>JO</td><td>True</td><td>1</td><tr><td>KZ</td><td>False</td><td>5</td><tr><td>KE</td><td>True</td><td>2</td><tr><td>KI</td><td>False</td><td>5</td><tr><td>KP</td><td>False</td><td>5</td><tr><td>XK</td><td>False</td><td>5</td><tr><td>KW</td><td>True</td><td>3</td><tr><td>KG</td><td>False</td><td>5</td><tr><td>LA</td><td>True</td><td>2</td><tr><td>LV</td><td>False</td><td>5</td><tr><td>LB</td><td>True</td><td>1</td><tr><td>LS</td><td>True</td><td>2</td><tr><td>LR</td><td>False</td><td>5</td><tr><td>LY</td><td>True</td><td>3</td><tr><td>LI</td><td>False</td><td>5</td><tr><td>LT</td><td>False</td><td>5</td><tr><td>LU</td><td>True</td><td>2</td><tr><td>MO</td><td>False</td><td>5</td><tr><td>MG</td><td>True</td><td>2</td><tr><td>MK</td><td>True</td><td>1</td><tr><td>MF</td><td>False</td><td>5</td><tr><td>MH</td><td>False</td><td>5</td><tr><td>ML</td><td>False</td><td>5</td><tr><td>MY</td><td>False</td><td>5</td><tr><td>MQ</td><td>True</td><td>2</td><tr><td>MV</td><td>False</td><td>5</td><tr><td>MR</td><td>False</td><td>5</td><tr><td>MW</td><td>False</td><td>5</td><tr><td>YT</td><td>True</td><td>2</td><tr><td>MX</td><td>True</td><td>3</td><tr><td>FM</td><td>True</td><td>3</td><tr><td>MN</td><td>False</td><td>5</td><tr><td>MC</td><td>False</td><td>5</td><tr><td>MD</td><td>False</td><td>5</td><tr><td>MS</td><td>True</td><td>3</td><tr><td>ME</td><td>True</td><td>2</td><tr><td>MA</td><td>False</td><td>5</td><tr><td>MZ</td><td>False</td><td>5</td><tr><td>MU</td><td>False</td><td>5</td><tr><td>MT</td><td>False</td><td>5</td><tr><td>MM</td><td>False</td><td>5</td><tr><td>NA</td><td>False</td><td>5</td><tr><td>NR</td><td>False</td><td>5</td><tr><td>NC</td><td>False</td><td>5</td><tr><td>NP</td><td>False</td><td>5</td><tr><td>NL</td><td>False</td><td>5</td><tr><td>NI</td><td>False</td><td>5</td><tr><td>NG</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>NE</td><td>False</td><td>5</td><tr><td>NU</td><td>False</td><td>5</td><tr><td>MP</td><td>True</td><td>3</td><tr><td>NF</td><td>True</td><td>1</td><tr><td>NO</td><td>True</td><td>2</td><tr><td>OM</td><td>False</td><td>5</td><tr><td>XX</td><td>False</td><td>5</td><tr><td>PK</td><td>False</td><td>5</td><tr><td>PW</td><td>True</td><td>3</td><tr><td>PA</td><td>False</td><td>5</td><tr><td>PY</td><td>False</td><td>5</td><tr><td>PS</td><td>False</td><td>5</td><tr><td>PE</td><td>False</td><td>5</td><tr><td>PH</td><td>False</td><td>5</td><tr><td>PN</td><td>True</td><td>2</td><tr><td>PS</td><td>False</td><td>5</td><tr><td>PG</td><td>False</td><td>5</td><tr><td>PL</td><td>True</td><td>2</td><tr><td>PT</td><td>False</td><td>5</td><tr><td>PR</td><td>True</td><td>3</td><tr><td>QA</td><td>False</td><td>5</td><tr><td>RE</td><td>True</td><td>2</td><tr><td>RO</td><td>False</td><td>5</td><tr><td>RU</td><td>False</td><td>5</td><tr><td>RW</td><td>True</td><td>3</td><tr><td>SA</td><td>True</td><td>2</td><tr><td>ZA</td><td>True</td><td>3</td><tr><td>WS</td><td>False</td><td>5</td><tr><td>SM</td><td>True</td><td>4</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>SN</td><td>False</td><td>5</td><tr><td>RS</td><td>False</td><td>5</td><tr><td>SC</td><td>False</td><td>5</td><tr><td>GS</td><td>False</td><td>5</td><tr><td>SL</td><td>True</td><td>2</td><tr><td>SG</td><td>False</td><td>5</td><tr><td>SJ</td><td>True</td><td>2</td><tr><td>KN</td><td>True</td><td>3</td><tr><td>KR</td><td>False</td><td>5</td><tr><td>LK</td><td>True</td><td>3</td><tr><td>SK</td><td>True</td><td>2</td><tr><td>SI</td><td>False</td><td>5</td><tr><td>SB</td><td>False</td><td>5</td><tr><td>SO</td><td>True</td><td>2</td><tr><td>ES</td><td>False</td><td>5</td><tr><td>PM</td><td>True</td><td>2</td><tr><td>SS</td><td>False</td><td>5</td><tr><td>LC</td><td>True</td><td>3</td><tr><td>SH</td><td>False</td><td>5</td><tr><td>ST</td><td>False</td><td>5</td><tr><td>SD</td><td>False</td><td>5</td><tr><td>SR</td><td>False</td><td>5</td><tr><td>VC</td><td>True</td><td>3</td><tr><td>SZ</td><td>True</td><td>2</td><tr><td>SE</td><td>False</td><td>5</td><tr><td>CH</td><td>True</td><td>2</td><tr><td>SX</td><td>False</td><td>5</td><tr><td>SY</td><td>False</td><td>5</td><tr><td>TC</td><td>True</td><td>3</td><tr><td>TW</td><td>False</td><td>5</td><tr><td>TJ</td><td>False</td><td>5</td><tr><td>TZ</td><td>False</td><td>5</td><tr><td>TT</td><td>True</td><td>3</td><tr><td>TH</td><td>False</td><td>5</td><tr><td>TL</td><td>False</td><td>5</td><tr><td>TG</td><td>True</td><td>3</td><tr><td>TK</td><td>False</td><td>5</td><tr><td>TO</td><td>True</td><td>2</td><tr><td>TM</td><td>True</td><td>3</td><tr><td>TN</td><td>True</td><td>2</td><tr><td>TR</td><td>True</td><td>3</td><tr><td>TV</td><td>False</td><td>5</td><tr><td>AE</td><td>True</td><td>2</td><tr><td>UG</td><td>False</td><td>5</td><tr><td>UA</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>UY</td><td>False</td><td>5</td><tr><td>US</td><td>True</td><td>3</td><tr><td>UM</td><td>True</td><td>3</td><tr><td>UZ</td><td>False</td><td>5</td><tr><td>VU</td><td>False</td><td>5</td><tr><td>VE</td><td>True</td><td>3</td><tr><td>VG</td><td>True</td><td>3</td><tr><td>VN</td><td>False</td><td>5</td><tr><td>VI</td><td>True</td><td>3</td><tr><td>WF</td><td>False</td><td>5</td><tr><td>GB</td><td>False</td><td>5</td><tr><td>EH</td><td>False</td><td>5</td><tr><td>YE</td><td>False</td><td>5</td><tr><td>ZM</td><td>True</td><td>3</td><tr><td>ZW</td><td>False</td><td>5</td></tbody></table>'
+            maxLength: 5
+          PhoneNumber: 
+            type: string
+            description: '<p>The phone number, without country code.</p>'
+            maxLength: 15
+            minLength: 1
+          Extension: 
+            type: string
+            description: '<p>The extension of the phone number.</p>'
+            maxLength: 10
+  contact_DELETE_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  contact_DELETE_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  contact_DELETE_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  contact_DELETE_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  contact_POST_Response200: 
+    type: object
+    required: 
+      - ContactID
+    properties: 
+      ContactID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a contact for the customer. This is required when updating or deleting a contact.</p>'
+  contact_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>CNT101</td><td>There is an existing contact of this type.</td></tr><tr><td>CNT102</td><td>The phone number provided is invalid.</td></tr><tr><td>CNT103</td><td>There must be between 1 and 5 phone numbers on a contact.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - CNT101
+                - CNT102
+                - CNT103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  contact_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  contact_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  contact_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>CNT101</td><td>There is an existing contact of this type.</td></tr><tr><td>CNT102</td><td>The phone number provided is invalid.</td></tr><tr><td>CNT103</td><td>There must be between 1 and 5 phone numbers on a contact.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - CNT101
+                - CNT102
+                - CNT103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  contact_PUT_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  contact_PUT_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  contact_PUT_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  contact_PUT_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  phone_DELETE_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CNT103</td><td>There must be between 1 and 5 phone numbers on a contact.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CNT103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  phone_DELETE_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  phone_DELETE_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  phone_DELETE_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CNT103</td><td>There must be between 1 and 5 phone numbers on a contact.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CNT103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  phone_POST_Response200: 
+    type: object
+    required: 
+      - PhoneID
+    properties: 
+      PhoneID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a phone number. This is required when updating or deleting a phone number.</p>'
+  phone_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CNT102</td><td>The phone number provided is invalid.</td></tr><tr><td>CNT103</td><td>There must be between 1 and 5 phone numbers on a contact.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CNT102
+                - CNT103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  phone_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  phone_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  phone_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CNT102</td><td>The phone number provided is invalid.</td></tr><tr><td>CNT103</td><td>There must be between 1 and 5 phone numbers on a contact.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CNT102
+                - CNT103
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  phone_PUT_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CNT102</td><td>The phone number provided is invalid.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CNT102
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  phone_PUT_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  phone_PUT_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  phone_PUT_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CNT102</td><td>The phone number provided is invalid.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CNT102
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message

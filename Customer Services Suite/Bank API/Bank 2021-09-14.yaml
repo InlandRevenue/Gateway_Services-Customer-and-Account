@@ -1,0 +1,474 @@
+swagger: '2.0'
+info: 
+  title: Bank
+  description: eFile replacement API used for Adding and Deleting refund bank accounts
+  version: ""
+host: 'eservices-test-gateway.npnsp.ird.govt.nz'
+basePath: /secure/gateway/bank/
+schemes: 
+  - https
+paths: 
+  /bank: 
+    delete: 
+      tags: 
+        - Bank Delete
+      summary: Bank Delete
+      description: ""
+      operationId: bankDELETE
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/bank_DELETE_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/bank_DELETE_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/bank_DELETE_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/bank_DELETE_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/bank_DELETE_ResponseDefault'
+    post: 
+      tags: 
+        - Bank Add
+      summary: Bank Add
+      description: ""
+      operationId: bankPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/bank_POST_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/bank_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/bank_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/bank_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/bank_POST_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
+definitions: 
+  bank_DELETE_Request: 
+    type: object
+    required: 
+      - AccountID
+      - AccountIDType
+    properties: 
+      AccountID: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p>'
+        maxLength: 15
+        minLength: 7
+      AccountIDType: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACC</td><td>Account ID</td></tr><tr><td>CMPF</td><td>Complying Fund ID</td></tr><tr><td>KSF</td><td>KiwiSaver Schemes ID</td></tr></tbody></table>'
+        maxLength: 6
+        minLength: 3
+        enum: 
+          - ACC
+          - CMPF
+          - KSF
+  bank_POST_Request: 
+    type: object
+    required: 
+      - AccountID
+      - AccountIDType
+      - NameOnAccount
+    properties: 
+      AccountID: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p>'
+        maxLength: 15
+        minLength: 7
+      AccountIDType: 
+        type: string
+        description: '<p>The unique identifier of an account that can be retrieved through the account information service.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACC</td><td>Account ID</td></tr><tr><td>CMPF</td><td>Complying Fund ID</td></tr><tr><td>KSF</td><td>KiwiSaver Schemes ID</td></tr></tbody></table>'
+        maxLength: 6
+        minLength: 3
+        enum: 
+          - ACC
+          - CMPF
+          - KSF
+      NameOnAccount: 
+        type: string
+        description: '<p>The name on the bank account. This must only contain characters in the ISO-8859-8 character set.</p>'
+        maxLength: 255
+        minLength: 1
+      NewZealand: 
+        type: object
+        description: '<p>Either a NewZealand object or International object must be provided, but not both.</p>'
+        required: 
+          - Bank
+          - Branch
+          - Account
+          - Suffix
+        properties: 
+          Bank: 
+            type: string
+            description: '<p>The 2 digit bank code for the bank account. Prepend 0 to meet minimum length, if required.</p>'
+            maxLength: 2
+            minLength: 2
+          Branch: 
+            type: string
+            description: '<p>The 4 digit branch code for the bank account. Prepend 0 to meet minimum length, if required.</p>'
+            maxLength: 4
+            minLength: 4
+          Account: 
+            type: string
+            description: '<p>The 8 digit account number for the bank account. Prepend 0 to meet minimum length, if required.</p>'
+            maxLength: 8
+            minLength: 8
+          Suffix: 
+            type: string
+            description: '<p>The 4 digit suffix for the bank account. Prepend 0 to meet minimum length, if required.</p>'
+            maxLength: 4
+            minLength: 4
+          Reference: 
+            type: string
+            description: '<p>The reference number of a credit union or building society account. This must be provided if bank account is a credit union or building society account. This must be left blank if not a credit union or building society account.</p>'
+            maxLength: 12
+      International: 
+        type: object
+        description: '<p>Either a NewZealand object or International object must be provided, but not both.</p>'
+        required: 
+          - RoutingNumber
+          - AccountNumber
+          - BankAccountType
+          - BankName
+          - Country
+        properties: 
+          RoutingNumber: 
+            type: string
+            description: '<p>The routing number on the bank account.</p>'
+            maxLength: 6
+            minLength: 6
+          AccountNumber: 
+            type: string
+            description: '<p>The account number of the bank account.</p>'
+            maxLength: 34
+            minLength: 1
+          BankAccountType: 
+            type: string
+            description: '<table><tbody><tr><th>code</th><th>description</th></tr><tr><td>C</td><td>Chequing</td></tr><tr><td>S</td><td>Savings</td></tr></tbody></table>'
+            maxLength: 1
+            minLength: 1
+            enum: 
+              - C
+              - S
+          BankName: 
+            type: string
+            description: '<p>The name of the bank the bank account belongs to. This must only contain characters in the ISO-8859-8 character set.</p>'
+            maxLength: 255
+            minLength: 1
+          Country: 
+            type: string
+            description: '<table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AU</td><td>Australia</td></tr></tbody></table>'
+            maxLength: 2
+            minLength: 2
+            enum: 
+              - AU
+  bank_DELETE_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>BNK101</td><td>The account provided does not have an existing bank account associated.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - BNK101
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  bank_DELETE_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  bank_DELETE_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  bank_DELETE_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>BNK101</td><td>The account provided does not have an existing bank account associated.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - BNK101
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  bank_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>BNK100</td><td>The bank account provided is invalid.</td></tr><tr><td>BNK102</td><td>There is no physical address for the customer or account for the provided country.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - BNK100
+                - BNK102
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  bank_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  bank_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  bank_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACT100</td><td>This account type is not eligible to be used in this service.</td></tr><tr><td>BNK100</td><td>The bank account provided is invalid.</td></tr><tr><td>BNK102</td><td>There is no physical address for the customer or account for the provided country.</td></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - ACT100
+                - BNK100
+                - BNK102
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message

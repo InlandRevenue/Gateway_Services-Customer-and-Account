@@ -1,0 +1,645 @@
+swagger: '2.0'
+info: 
+  title: Customer
+  description: The eFile replacement Customer information REST API
+  version: ""
+host: 'eservices-test-gateway.npnsp.ird.govt.nz'
+basePath: /secure/gateway/customer/
+schemes: 
+  - https
+paths: 
+  /customer: 
+    post: 
+      tags: 
+        - Customer Retrieve
+      summary: Customer Retrieve
+      description: ""
+      operationId: customerPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/customer_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/customer_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/customer_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/customer_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/customer_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/customer_POST_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
+definitions: 
+  customer_POST_Request: 
+    type: object
+    required: 
+      - CustomerID
+      - CustomerIDType
+    properties: 
+      CustomerID: 
+        type: string
+        description: '<p>The unique identifier of a customer.</p>'
+        maxLength: 10
+        minLength: 9
+      CustomerIDType: 
+        type: string
+        description: '<p>The type of unique identifier of a customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>IRD</td><td>IRD number</td></tr><tr><td>CST</td><td>Customer Identifier</td></tr></tbody></table>'
+        maxLength: 3
+        minLength: 3
+        enum: 
+          - IRD
+          - CST
+  customer_POST_Response200: 
+    type: object
+    required: 
+      - Customer
+    properties: 
+      Customer: 
+        type: object
+        required: 
+          - ID
+          - IDType
+          - Commence
+          - Name
+        properties: 
+          ID: 
+            type: string
+            description: '<p>The unique identifier of a customer.</p>'
+            maxLength: 10
+            minLength: 9
+          IDType: 
+            type: string
+            description: '<p>The type of unique identifier of a customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>IRD</td><td>IRD number</td></tr><tr><td>CST</td><td>Customer Identifier</td></tr></tbody></table>'
+            maxLength: 3
+            minLength: 3
+            enum: 
+              - IRD
+              - CST
+          EntityType: 
+            type: string
+            description: '<p>The entity type of the customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>COMPNY</td><td>Company</td></tr><tr><td>DIPMSS</td><td>Diplomatic Mission</td></tr><tr><td>EMBASY</td><td>Embassy</td></tr><tr><td>GVMDPT</td><td>Government Department</td></tr><tr><td>HICOMM</td><td>High Commission</td></tr><tr><td>HLDACC</td><td>Holding account</td></tr><tr><td>INDVDL</td><td>Individual</td></tr><tr><td>LCLATH</td><td>Local Authority (Govt)</td></tr><tr><td>MRIAUT</td><td>Maori Authority</td></tr><tr><td>PBCATH</td><td>Public Authority (Govt)</td></tr><tr><td>PTNRSP</td><td>Partnership</td></tr><tr><td>SOCITY</td><td>Society/Club</td></tr><tr><td>SPRFND</td><td>Super Fund</td></tr><tr><td>STOWN</td><td>State-Owned (Govt)</td></tr><tr><td>STSCHL</td><td>State School (Govt)</td></tr><tr><td>TBD</td><td>To Be Established</td></tr><tr><td>TRUST</td><td>Trust</td></tr><tr><td>UNTTST</td><td>Unit Trust</td></tr></tbody></table>'
+            maxLength: 6
+            minLength: 3
+            enum: 
+              - COMPNY
+              - DIPMSS
+              - EMBASY
+              - GVMDPT
+              - HICOMM
+              - HLDACC
+              - INDVDL
+              - LCLATH
+              - MRIAUT
+              - PBCATH
+              - PTNRSP
+              - SOCITY
+              - SPRFND
+              - STOWN
+              - STSCHL
+              - TBD
+              - TRUST
+              - UNTTST
+          EntitySubType: 
+            type: string
+            description: '<p>The entity sub type of the customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AG</td><td>International Agency</td></tr><tr><td>AI</td><td>Agent Non-Resident Insurer</td></tr><tr><td>BC</td><td>Body Corporate</td></tr><tr><td>BO</td><td>Non-Resident Borrower</td></tr><tr><td>BS</td><td>Building Society</td></tr><tr><td>CC</td><td>Close Company</td></tr><tr><td>CG</td><td>Consolidated Group</td></tr><tr><td>CO</td><td>Co-operative</td></tr><tr><td>CY</td><td>Oranga Tamariki as Custodian</td></tr><tr><td>EB</td><td>Embassy</td></tr><tr><td>EM</td><td>Self Employed and Employer</td></tr><tr><td>ES</td><td>Estate</td></tr><tr><td>FO</td><td>NZ Force registered</td></tr><tr><td>FR</td><td>Foreign Trust</td></tr><tr><td>FS</td><td>Friendly Society</td></tr><tr><td>HC</td><td>High Commission</td></tr><tr><td>IP</td><td>Industrial & Provident Society</td></tr><tr><td>IR</td><td>Imputation Representative</td></tr><tr><td>IS</td><td>Incorporated Society/Club</td></tr><tr><td>JV</td><td>Joint Venture</td></tr><tr><td>LA</td><td>Local Authority</td></tr><tr><td>LC</td><td>Loss Attributing Qualifying Co</td></tr><tr><td>LI</td><td>Life Insurance</td></tr><tr><td>LP</td><td>Limited Partnership</td></tr><tr><td>LT</td><td>Look Through Company</td></tr><tr><td>MA</td><td>Maori Authority</td></tr><tr><td>MT</td><td>Maori Trustee</td></tr><tr><td>NE</td><td>Non-Resident Entertainer</td></tr><tr><td>NQ</td><td>Non-Complying</td></tr><tr><td>NR</td><td>Non-Resident Child Support</td></tr><tr><td>OC</td><td>Non-Resident Contractor</td></tr><tr><td>OE</td><td>Non-Resident Contract Employer</td></tr><tr><td>OM</td><td>Overseas Child Support</td></tr><tr><td>OP</td><td>Ordinary Partnership</td></tr><tr><td>OS</td><td>Non-Res. Contractor Not Employ</td></tr><tr><td>OT</td><td>Other</td></tr><tr><td>PA</td><td>Public Authority</td></tr><tr><td>PI</td><td>PAYE Intermediary</td></tr><tr><td>PP</td><td>Provisional Tax Pooling</td></tr><tr><td>PT</td><td>Other Provisional Taxpayer</td></tr><tr><td>QC</td><td>Qualifying Company</td></tr><tr><td>QL</td><td>Complying Trust</td></tr><tr><td>RI</td><td>Provisional Tax Rental</td></tr><tr><td>RS</td><td>Recognised Seasonal Worker</td></tr><tr><td>SA</td><td>Sick Accident Death Fund</td></tr><tr><td>SD</td><td>Widely Held Superannuation</td></tr><tr><td>SE</td><td>Self Employed not Employer</td></tr><tr><td>SF</td><td>Registered Category 1</td></tr><tr><td>SG</td><td>Registered Other</td></tr><tr><td>SH</td><td>Unregistered</td></tr><tr><td>SJ</td><td>Foreign</td></tr><tr><td>SK</td><td>KiwiSaver Schemes</td></tr><tr><td>SO</td><td>State-owned</td></tr><tr><td>SP</td><td>Special Partnership</td></tr><tr><td>SW</td><td>Salary and Wages</td></tr><tr><td>TT</td><td>Trans Tasman</td></tr><tr><td>UN</td><td>Unincorporated Society/Club</td></tr><tr><td>UT</td><td>Unit Trust</td></tr><tr><td>WH</td><td>Widely Held Company</td></tr><tr><td>XB</td><td>Cross Border</td></tr><tr><td>XX</td><td>To Be Established</td></tr><tr><td></td><td></td></tr></tbody></table>'
+            maxLength: 2
+            enum: 
+              - AG
+              - AI
+              - BC
+              - BO
+              - BS
+              - CC
+              - CG
+              - CO
+              - CY
+              - EB
+              - EM
+              - ES
+              - FO
+              - FR
+              - FS
+              - HC
+              - IP
+              - IR
+              - IS
+              - JV
+              - LA
+              - LC
+              - LI
+              - LP
+              - LT
+              - MA
+              - MT
+              - NE
+              - NQ
+              - NR
+              - OC
+              - OE
+              - OM
+              - OP
+              - OS
+              - OT
+              - PA
+              - PI
+              - PP
+              - PT
+              - QC
+              - QL
+              - RI
+              - RS
+              - SA
+              - SD
+              - SE
+              - SF
+              - SG
+              - SH
+              - SJ
+              - SK
+              - SO
+              - SP
+              - SW
+              - TT
+              - UN
+              - UT
+              - WH
+              - XB
+              - XX
+              - ""
+          Commence: 
+            type: string
+            description: '<p>The date the customer was registered.</p>'
+            maxLength: 10
+            minLength: 10
+          Cease: 
+            type: string
+            description: '<p>The date the customer ceased operating, or 9999-12-31 if customer has not ceased.</p>'
+            maxLength: 10
+          NZBN: 
+            type: string
+            description: '<p>The New Zealand Business Number of the customer, if one is known.</p>'
+            maxLength: 13
+          BIC: 
+            type: array
+            items: 
+              type: object
+              required: 
+                - BICCode
+              properties: 
+                BICCode: 
+                  type: string
+                  description: '<p>A Business Industry Classification Code associated to the customer.</p>'
+                  maxLength: 30
+          Indicator: 
+            type: array
+            items: 
+              type: object
+              required: 
+                - Indicator
+              properties: 
+                Indicator: 
+                  type: string
+                  description: '<p>An entity indicator for the customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>LOOKTH</td><td>Look Through Company</td></tr><tr><td>MRIAEL</td><td>Maori Authority</td></tr><tr><td>QUALCO</td><td>Qualifying Company</td></tr></tbody></table>'
+                  maxLength: 6
+                  enum: 
+                    - LOOKTH
+                    - MRIAEL
+                    - QUALCO
+          Address: 
+            type: array
+            items: 
+              type: object
+              required: 
+                - AddressID
+                - Type
+                - Formatted
+                - PostCode
+                - Country
+                - Attention
+                - Urbanisation
+                - District
+                - SubDistrict
+                - SubProvince
+                - Updated
+              properties: 
+                AddressID: 
+                  type: number
+                  format: int64
+                  description: '<p>The unique identifier of an address. This is required when updating or deleting an address.</p>'
+                Type: 
+                  type: string
+                  description: '<p>The unique identifier of an address. This is required when updating or deleting an address.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>LOC</td><td>Physical</td></tr><tr><td>MAL</td><td>Mailing</td></tr></tbody></table>'
+                  maxLength: 6
+                  minLength: 3
+                  enum: 
+                    - LOC
+                    - MAL
+                Formatted: 
+                  type: string
+                  description: '<p>The full address formatted into a single string.</p>'
+                  maxLength: 255
+                  minLength: 1
+                Street: 
+                  type: string
+                  description: '<p>The first street line of the address.</p>'
+                  maxLength: 255
+                  minLength: 1
+                Street2: 
+                  type: string
+                  description: '<p>The second street line of the address.</p>'
+                  maxLength: 255
+                Unit: 
+                  type: string
+                  description: '<p>The unit of the address.</p>'
+                  maxLength: 30
+                UnitType: 
+                  type: string
+                  description: '<p>The unit type of the address. Only applicable to addresses for the following countries: United States, Canada</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>#</td><td>#</td></tr><tr><td>APARTMENT</td><td>APARTMENT</td></tr><tr><td>APT</td><td>APARTMENT</td></tr><tr><td>BLDG</td><td>BUILDING</td></tr><tr><td>BSMT</td><td>BASEMENT</td></tr><tr><td>DEPT</td><td>DEPARTMENT</td></tr><tr><td>FL</td><td>FLOOR</td></tr><tr><td>FLAT</td><td>FLAT</td></tr><tr><td>FRNT</td><td>FRONT</td></tr><tr><td>HNGR</td><td>HANGAR</td></tr><tr><td>KIOSK</td><td>KIOSK</td></tr><tr><td>LBBY</td><td>LOBBY</td></tr><tr><td>LOT</td><td>LOT</td></tr><tr><td>LOWR</td><td>LOWER</td></tr><tr><td>NUM</td><td>NUMBER</td></tr><tr><td>NUMBER</td><td>NUMBER</td></tr><tr><td>OFC</td><td>OFFICE</td></tr><tr><td>PH</td><td>PENTHOUSE</td></tr><tr><td>PIER</td><td>PIER</td></tr><tr><td>REAR</td><td>REAR</td></tr><tr><td>RM</td><td>ROOM</td></tr><tr><td>ROOM</td><td>ROOM</td></tr><tr><td>SHOP</td><td>SHOP</td></tr><tr><td>SIDE</td><td>SIDE</td></tr><tr><td>SLIP</td><td>SLIP</td></tr><tr><td>SPC</td><td>SPACE</td></tr><tr><td>STE</td><td>SUITE</td></tr><tr><td>STOP</td><td>STOP</td></tr><tr><td>SUITE</td><td>SUITE</td></tr><tr><td>TRLR</td><td>TRAILER</td></tr><tr><td>UNIT</td><td>UNIT</td></tr><tr><td>UPPR</td><td>UPPER</td></tr><tr><td>VILLA</td><td>VILLA</td></tr><tr><td></td><td></td></tr></tbody></table>'
+                  maxLength: 50
+                  enum: 
+                    - '#'
+                    - APARTMENT
+                    - APT
+                    - BLDG
+                    - BSMT
+                    - DEPT
+                    - FL
+                    - FLAT
+                    - FRNT
+                    - HNGR
+                    - KIOSK
+                    - LBBY
+                    - LOT
+                    - LOWR
+                    - NUM
+                    - NUMBER
+                    - OFC
+                    - PH
+                    - PIER
+                    - REAR
+                    - RM
+                    - ROOM
+                    - SHOP
+                    - SIDE
+                    - SLIP
+                    - SPC
+                    - STE
+                    - STOP
+                    - SUITE
+                    - TRLR
+                    - UNIT
+                    - UPPR
+                    - VILLA
+                    - ""
+                City: 
+                  type: string
+                  description: '<p>The city of the address.</p>'
+                  maxLength: 100
+                State: 
+                  type: string
+                  description: '<p>The state of the address. Represented as the ISO 3166-2 subdivision. This is required for addresses for the following countries: Australia, Canada, United States of America</p>'
+                  maxLength: 6
+                PostCode: 
+                  type: string
+                  description: '<p>The post code of the address. This is required for addresses for the following countries: Australia, Canada, United States of America</p>'
+                  maxLength: 30
+                Country: 
+                  type: string
+                  description: '<p>The ISO 3166-1 alpha-2 country code of the address.</p>'
+                  maxLength: 2
+                  minLength: 2
+                Attention: 
+                  type: string
+                  description: '<p>The person to whom the correspondence is addressed.</p>'
+                  maxLength: 255
+                Urbanisation: 
+                  type: string
+                  description: '<p>The person to whom the correspondence is addressed.</p>'
+                  maxLength: 50
+                District: 
+                  type: string
+                  description: '<p>The district of the address.</p>'
+                  maxLength: 30
+                SubDistrict: 
+                  type: string
+                  description: '<p>The sub district of the address.</p>'
+                  maxLength: 30
+                SubProvince: 
+                  type: string
+                  description: '<p>The sub province of the address.</p>'
+                  maxLength: 50
+                Updated: 
+                  type: string
+                  description: '<p>The date that the address was last updated.</p>'
+                  maxLength: 19
+                  minLength: 10
+          Name: 
+            type: array
+            items: 
+              type: object
+              required: 
+                - NameID
+                - Type
+                - Formatted
+                - Updated
+              properties: 
+                NameID: 
+                  type: number
+                  format: int64
+                  description: '<p>The unique identifier of a name. This is required when updating or deleting a name.</p>'
+                Type: 
+                  type: string
+                  description: '<p>The type of name. Profile names are used when a customer has multiple IRD numbers, such as Income Groups.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DBACST</td><td>Trade Alternate name which customer is conducting business under</td></tr><tr><td>LGL</td><td>Legal Legal name the customer is registered as</td></tr><tr><td>PREFER</td><td>Preferred Name customer prefers to be called by</td></tr><tr><td>PRF</td><td>Profile name</td></tr></tbody></table>'
+                  maxLength: 6
+                  minLength: 3
+                  enum: 
+                    - DBACST
+                    - LGL
+                    - PREFER
+                    - PRF
+                Formatted: 
+                  type: string
+                  description: '<p>The full name formatted into a single string. For non individuals, this is the only name.</p>'
+                  maxLength: 255
+                LastName: 
+                  type: string
+                  description: '<p>The last name or surname of an individual.</p>'
+                  maxLength: 255
+                MiddleName: 
+                  type: string
+                  description: '<p>The middle name of an individual.</p>'
+                  maxLength: 50
+                FirstName: 
+                  type: string
+                  description: '<p>The first name of an individual.</p>'
+                  maxLength: 50
+                Title: 
+                  type: string
+                  description: '<p>The title of a preferred name. This value needs to be omitted or blank for trade names.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>BRIG</td><td>Brigadier</td></tr><tr><td>CAPT</td><td>Captain</td></tr><tr><td>COL</td><td>Colonel</td></tr><tr><td>DAME</td><td>Dame</td></tr><tr><td>DR</td><td>Doctor</td></tr><tr><td>HON</td><td>Honourable</td></tr><tr><td>HONDR</td><td>Honourable Doctor</td></tr><tr><td>JUDGE</td><td>Judge</td></tr><tr><td>LADY</td><td>Lady</td></tr><tr><td>LORD</td><td>Lord</td></tr><tr><td>MAJOR</td><td>Major</td></tr><tr><td>MASTER</td><td>Master</td></tr><tr><td>MISS</td><td>Miss</td></tr><tr><td>MR</td><td>Mr</td></tr><tr><td>MRS</td><td>Mrs</td></tr><tr><td>MS</td><td>Ms</td></tr><tr><td>MX</td><td>Mx</td></tr><tr><td>PROF</td><td>Professor</td></tr><tr><td>REV</td><td>Reverend</td></tr><tr><td>REVFR</td><td>Reverend Father</td></tr><tr><td>RMTHR</td><td>Reverend Mother</td></tr><tr><td>RTHON</td><td>Right Honourable</td></tr><tr><td>RTREV</td><td>Right Reverend</td></tr><tr><td>SIR</td><td>Sir</td></tr><tr><td>SISTER</td><td>Sister</td></tr><tr><td>WGCDR</td><td>Wing Commander</td></tr><tr><td></td><td></td></tr></tbody></table>'
+                  maxLength: 10
+                  enum: 
+                    - BRIG
+                    - CAPT
+                    - COL
+                    - DAME
+                    - DR
+                    - HON
+                    - HONDR
+                    - JUDGE
+                    - LADY
+                    - LORD
+                    - MAJOR
+                    - MASTER
+                    - MISS
+                    - MR
+                    - MRS
+                    - MS
+                    - MX
+                    - PROF
+                    - REV
+                    - REVFR
+                    - RMTHR
+                    - RTHON
+                    - RTREV
+                    - SIR
+                    - SISTER
+                    - WGCDR
+                    - ""
+                Suffix: 
+                  type: string
+                  description: '<p>The suffix of an individual.</p>'
+                  maxLength: 10
+                Updated: 
+                  type: string
+                  description: '<p>The date that the name was last updated.</p>'
+                  maxLength: 19
+                  minLength: 10
+          Contact: 
+            type: array
+            items: 
+              type: object
+              required: 
+                - ContactID
+                - ContactType
+                - Updated
+              properties: 
+                ContactID: 
+                  type: number
+                  format: int64
+                  description: '<p>The unique identifier of a contact for the customer. This is required when updating or deleting a contact.</p>'
+                ContactType: 
+                  type: string
+                  description: '<p>The type of contact.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>PRIMRY</td><td>Primary</td></tr><tr><td>SCNDRY</td><td>Secondary</td></tr></tbody></table>'
+                  maxLength: 6
+                  minLength: 6
+                  enum: 
+                    - PRIMRY
+                    - SCNDRY
+                Name: 
+                  type: string
+                  description: '<p>The name of the contact.</p>'
+                  maxLength: 255
+                Updated: 
+                  type: string
+                  description: '<p>The date that the contact was last updated.</p>'
+                  maxLength: 19
+                  minLength: 10
+                Phone: 
+                  type: array
+                  items: 
+                    type: object
+                    required: 
+                      - PhoneID
+                      - PhoneType
+                      - Country
+                    properties: 
+                      PhoneID: 
+                        type: number
+                        format: int64
+                        description: '<p>The unique identifier of a phone number. This is required when updating or deleting a phone number.</p>'
+                      PhoneType: 
+                        type: string
+                        description: '<p>The type of phone.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>BSN</td><td>Business phone</td></tr><tr><td>BSNFAX</td><td>Fax</td></tr><tr><td>CELL</td><td>Mobile phone</td></tr><tr><td>HOM</td><td>Home phone</td></tr></tbody></table>'
+                        maxLength: 6
+                        minLength: 3
+                        enum: 
+                          - BSN
+                          - BSNFAX
+                          - CELL
+                          - HOM
+                      Country: 
+                        type: string
+                        description: '<p>The ISO 3166-1 alpha-2 country code indicating the country for the phone number.</p>'
+                        maxLength: 2
+                        minLength: 2
+                      AreaCode: 
+                        type: string
+                        description: '<p>The area code of the phone number.</p>'
+                        maxLength: 5
+                      PhoneNumber: 
+                        type: string
+                        description: '<p>The phone number, without country code.</p>'
+                        maxLength: 15
+                        minLength: 1
+                      Extension: 
+                        type: string
+                        description: '<p>The extension of the phone number.</p>'
+                        maxLength: 10
+  customer_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  customer_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  customer_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  customer_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message

@@ -14,7 +14,7 @@ The name API enables the creating, updating, and deleting of the customer’s na
 
 ## Key documentation
 
-* View and download the [Name API YAML](Name%202020-09-30.yaml)
+* View and download the [Name API YAML](Name%202021-09-14.yaml)
 * [Download the Name API build pack](Build%20pack%20-%20Name%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON messages 
 * [View API Reference and URL Endpoints](#Name-API-REST-Reference)	

@@ -1,0 +1,675 @@
+swagger: '2.0'
+info: 
+  title: Name
+  description: 'An API for adding, updating and removing names'
+  version: ""
+host: 'eservices-test-gateway.npnsp.ird.govt.nz'
+basePath: /secure/gateway/name/
+schemes: 
+  - https
+paths: 
+  /name: 
+    delete: 
+      tags: 
+        - Name Delete
+      summary: Name Delete
+      description: ""
+      operationId: nameDELETE
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/name_DELETE_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/name_DELETE_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/name_DELETE_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/name_DELETE_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/name_DELETE_ResponseDefault'
+    post: 
+      tags: 
+        - Name Create
+      summary: Name Create
+      description: ""
+      operationId: namePOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/name_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/name_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/name_POST_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/name_POST_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/name_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/name_POST_ResponseDefault'
+    put: 
+      tags: 
+        - Name Update
+      summary: Name Update
+      description: ""
+      operationId: namePUT
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/name_PUT_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/name_PUT_Response400'
+        '403': 
+          description: 'HttpStatus: 403 - Forbidden'
+          schema: 
+            $ref: '#/definitions/name_PUT_Response403'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/name_PUT_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/name_PUT_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
+definitions: 
+  name_DELETE_Request: 
+    type: object
+    required: 
+      - NameID
+    properties: 
+      NameID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a name. This is required when updating or deleting a name.</p>'
+  name_POST_Request: 
+    type: object
+    required: 
+      - CustomerID
+      - CustomerIDType
+      - Type
+    properties: 
+      CustomerID: 
+        type: string
+        description: '<p>The unique identifier of a customer.</p>'
+        maxLength: 10
+        minLength: 9
+      CustomerIDType: 
+        type: string
+        description: '<p>The type of unique identifier of a customer.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>IRD</td><td>IRD number</td></tr><tr><td>CST</td><td>Customer Identifier</td></tr></tbody></table>'
+        maxLength: 3
+        minLength: 3
+        enum: 
+          - IRD
+          - CST
+      Type: 
+        type: string
+        description: '<p>The type of name being updated.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DBACST</td><td>Trade Alternate name which customer is conducting business under</td></tr><tr><td>PREFER</td><td>Preferred Name customer prefers to be called by</td></tr></tbody></table>'
+        maxLength: 6
+        minLength: 3
+        enum: 
+          - DBACST
+          - PREFER
+      Unformatted: 
+        type: string
+        description: '<p>The name value for a trade name. This value needs to be omitted or blank for preferred names.  This value must be in the EBCDIC character set.</p>'
+        maxLength: 255
+      LastName: 
+        type: string
+        description: '<p>The last name of a preferred name. This value needs to be omitted or blank for trade names. This value must be in the EBCDIC character set.</p>'
+        maxLength: 50
+      MiddleName: 
+        type: string
+        description: '<p>The middle name of a preferred name. This value needs to be omitted or blank for trade names. This value must be in the EBCDIC character set.</p>'
+        maxLength: 50
+      FirstName: 
+        type: string
+        description: '<p>The first name of a preferred name. This value needs to be omitted or blank for trade names. This value must be in the EBCDIC character set.</p>'
+        maxLength: 50
+      Title: 
+        type: string
+        description: '<p>The title of a preferred name. This value needs to be omitted or blank for trade names.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>BRIG</td><td>Brigadier</td></tr><tr><td>CAPT</td><td>Captain</td></tr><tr><td>COL</td><td>Colonel</td></tr><tr><td>DAME</td><td>Dame</td></tr><tr><td>DR</td><td>Doctor</td></tr><tr><td>HON</td><td>Honourable</td></tr><tr><td>HONDR</td><td>Honourable Doctor</td></tr><tr><td>JUDGE</td><td>Judge</td></tr><tr><td>LADY</td><td>Lady</td></tr><tr><td>LORD</td><td>Lord</td></tr><tr><td>MAJOR</td><td>Major</td></tr><tr><td>MASTER</td><td>Master</td></tr><tr><td>MISS</td><td>Miss</td></tr><tr><td>MR</td><td>Mr</td></tr><tr><td>MRS</td><td>Mrs</td></tr><tr><td>MS</td><td>Ms</td></tr><tr><td>MX</td><td>Mx</td></tr><tr><td>PROF</td><td>Professor</td></tr><tr><td>REV</td><td>Reverend</td></tr><tr><td>REVFR</td><td>Reverend Father</td></tr><tr><td>RMTHR</td><td>Reverend Mother</td></tr><tr><td>RTHON</td><td>Right Honourable</td></tr><tr><td>RTREV</td><td>Right Reverend</td></tr><tr><td>SIR</td><td>Sir</td></tr><tr><td>SISTER</td><td>Sister</td></tr><tr><td>WGCDR</td><td>Wing Commander</td></tr><tr><td></td><td></td></tr></tbody></table>'
+        maxLength: 6
+        enum: 
+          - BRIG
+          - CAPT
+          - COL
+          - DAME
+          - DR
+          - HON
+          - HONDR
+          - JUDGE
+          - LADY
+          - LORD
+          - MAJOR
+          - MASTER
+          - MISS
+          - MR
+          - MRS
+          - MS
+          - MX
+          - PROF
+          - REV
+          - REVFR
+          - RMTHR
+          - RTHON
+          - RTREV
+          - SIR
+          - SISTER
+          - WGCDR
+          - ""
+      Suffix: 
+        type: string
+        description: '<p>The suffix of a preferred name. This value needs to be omitted or blank for trade names. This value must be in the EBCDIC character set.</p>'
+        maxLength: 10
+  name_PUT_Request: 
+    type: object
+    required: 
+      - NameID
+    properties: 
+      NameID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a name. This is required when updating or deleting a name.</p>'
+      Unformatted: 
+        type: string
+        description: '<p>The name value for a trade name. This value needs to be omitted or blank for preferred names.  This value must be in the EBCDIC character set.</p>'
+        maxLength: 255
+      LastName: 
+        type: string
+        description: '<p>The last name of a preferred name. This value needs to be omitted or blank for trade names. This value must be in the EBCDIC character set.</p>'
+        maxLength: 50
+      MiddleName: 
+        type: string
+        description: '<p>The middle name of a preferred name. This value needs to be omitted or blank for trade names. This value must be in the EBCDIC character set.</p>'
+        maxLength: 50
+      FirstName: 
+        type: string
+        description: '<p>The first name of a preferred name. This value needs to be omitted or blank for trade names. This value must be in the EBCDIC character set.</p>'
+        maxLength: 50
+      Title: 
+        type: string
+        description: '<p>The title of a preferred name. This value needs to be omitted or blank for trade names.</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>BRIG</td><td>Brigadier</td></tr><tr><td>CAPT</td><td>Captain</td></tr><tr><td>COL</td><td>Colonel</td></tr><tr><td>DAME</td><td>Dame</td></tr><tr><td>DR</td><td>Doctor</td></tr><tr><td>HON</td><td>Honourable</td></tr><tr><td>HONDR</td><td>Honourable Doctor</td></tr><tr><td>JUDGE</td><td>Judge</td></tr><tr><td>LADY</td><td>Lady</td></tr><tr><td>LORD</td><td>Lord</td></tr><tr><td>MAJOR</td><td>Major</td></tr><tr><td>MASTER</td><td>Master</td></tr><tr><td>MISS</td><td>Miss</td></tr><tr><td>MR</td><td>Mr</td></tr><tr><td>MRS</td><td>Mrs</td></tr><tr><td>MS</td><td>Ms</td></tr><tr><td>MX</td><td>Mx</td></tr><tr><td>PROF</td><td>Professor</td></tr><tr><td>REV</td><td>Reverend</td></tr><tr><td>REVFR</td><td>Reverend Father</td></tr><tr><td>RMTHR</td><td>Reverend Mother</td></tr><tr><td>RTHON</td><td>Right Honourable</td></tr><tr><td>RTREV</td><td>Right Reverend</td></tr><tr><td>SIR</td><td>Sir</td></tr><tr><td>SISTER</td><td>Sister</td></tr><tr><td>WGCDR</td><td>Wing Commander</td></tr><tr><td></td><td></td></tr></tbody></table>'
+        maxLength: 6
+        enum: 
+          - BRIG
+          - CAPT
+          - COL
+          - DAME
+          - DR
+          - HON
+          - HONDR
+          - JUDGE
+          - LADY
+          - LORD
+          - MAJOR
+          - MASTER
+          - MISS
+          - MR
+          - MRS
+          - MS
+          - MX
+          - PROF
+          - REV
+          - REVFR
+          - RMTHR
+          - RTHON
+          - RTREV
+          - SIR
+          - SISTER
+          - WGCDR
+          - ""
+      Suffix: 
+        type: string
+        description: '<p>The suffix of a preferred name. This value needs to be omitted or blank for trade names. This value must be in the EBCDIC character set.</p>'
+        maxLength: 10
+  name_DELETE_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>NAM100</td><td>A name of this type cannot be deleted. Please update instead.</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - NAM100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  name_DELETE_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  name_DELETE_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  name_DELETE_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>NAM100</td><td>A name of this type cannot be deleted. Please update instead.</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - NAM100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  name_POST_Response200: 
+    type: object
+    required: 
+      - NameID
+    properties: 
+      NameID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a name. This is required when updating or deleting a name.</p>'
+  name_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>NAM101</td><td>There is an existing name of this type.</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+                - NAM101
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  name_POST_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  name_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  name_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>NAM101</td><td>There is an existing name of this type.</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+                - EV2234
+                - NAM101
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  name_PUT_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  name_PUT_Response403: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1022
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+            message: 
+              type: string
+              description: Error Message
+  name_PUT_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - server
+            message: 
+              type: string
+              description: Error Message
+  name_PUT_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - CST404
+                - EV1020
+                - EV1021
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - security
+                - validation
+            message: 
+              type: string
+              description: Error Message
