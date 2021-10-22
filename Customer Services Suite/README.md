@@ -70,6 +70,14 @@ You'll need to use different APIs depending on the service that your app provide
 
 ---
 
+#### BIC API - `/gateway/bank/{Service}`
+| Service | HTTP request types | Description | 
+| -- | :--: | -- | 
+| bic |  `DELETE` | Deletes the refund bank account from the identified customer account |
+| bic |  `POST` | Ceases an existing BIC code on a customer  |
+
+---
+
 #### Contact API - `/gateway/contact/{Service}`
 | Service | HTTP request types | Description | 
 | :--: | :--: | -- |
