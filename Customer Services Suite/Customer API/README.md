@@ -8,7 +8,7 @@
 
 ## About the Customer API 
 
-The customer API provides general information about a customer. It is one of seven APIs that together make up the customer services suite. 
+The customer API provides general information about a customer. It is one of eight APIs that together make up the customer services suite. 
 
 >**NOTE:** The Customer API is only available to Digital Service Providers who use X.509 Digital Certificate used for Mutual TLS on port 4046 and requires OAuth2 or JWT token.
 

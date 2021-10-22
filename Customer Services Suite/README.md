@@ -23,6 +23,9 @@ Address API updates customer and account addresses.
 ### [Bank API](Bank%20API) 
 Bank Account API updates refund bank account information of an identified customer’s account.
 
+### [BIC API](BIC%20API) 
+BIC API updates of the BIC codes information of an identified for a customer’s account.
+
 ### [Contact API](Contact%20API) 
 Contact API updates customer and account contacts.
 
