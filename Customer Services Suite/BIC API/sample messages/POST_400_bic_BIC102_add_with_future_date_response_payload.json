@@ -1,0 +1,9 @@
+{
+	"errors": [
+        {
+            "code": "BIC102",
+            "type": "validation",
+            "message": "Activity commence date may not be in the future"
+        }
+    ]
+}

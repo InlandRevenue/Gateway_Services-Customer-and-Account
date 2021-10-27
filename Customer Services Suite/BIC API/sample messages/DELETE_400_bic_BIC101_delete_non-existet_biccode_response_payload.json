@@ -1,0 +1,9 @@
+{
+    "errors": [
+        {
+            "code": "BIC101",
+            "type": "validation",
+            "message": "Unable to find activity code provided on the customer"
+        }
+    ]
+}
