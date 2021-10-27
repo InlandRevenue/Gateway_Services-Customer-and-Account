@@ -31,6 +31,14 @@ The BIC API enables the adding / updating and ceasing of the BIC codes for an id
 
 | Service | HTTP request types | HTTP Status Code| Description | JSON Request | JSON Response | 
 | -- | -- | :--: | -- | -- | -- | 
+| bic | DELETE | 200 | Delete BIC request with CST ID | [Request](DELETE_200_Delete_bic_request_with_CST_ID.json) | HTTP Status Code 200 | 
+| bic | DELETE | 200 | Delete BIC request with IRD ID | [Request](DELETE_200_Delete_bic_request_with_IRD_ID.json) | HTTP Status Code 200 |
+| bic | DELETE | 400 | Delete non-existet BIC code request | [Request](DELETE_400_bic_BIC101_delete_non-existet_biccode_request_payload.json) | [Response](DELETE_400_bic_BIC101_delete_non-existet_biccode_response_payload.json) |
+| bic | DELETE | 400 | Delete with future date request payload |[Request](DELETE_400_bic_BIC103_delete_with_future_date_request_payload.json) | [Response](DELETE_400_bic_BIC103_delete_with_future_date_response_payload.json) |
+| bic | POST | 200 | Add BIC request with CST ID | [Request](POST_200_Add_bic_request_with_CST_ID.json) | HTTP Status Code 200| 
+| bic | POST | 200 | Add BIC request with IRD ID| [Request](POST_200_Add_bic_request_with_IRD_ID.json) | HTTP Status Code 200 |
+| bic | POST   | 400 | Add with future date request payload |[Request](POST_400_bic_BIC102_add_with_future_date_request_payload.json) | [Response](POST_400_bic_BIC102_add_with_future_date_response_payload.json) |
+
 
 
 <a name="BIC-API-REST-Reference"></a>
@@ -58,8 +66,8 @@ The BIC API enables the adding / updating and ceasing of the BIC codes for an id
 
 ### BIC mock scenarios mindmap
 
-[View larger image](../images/BIC%20API%20Mock%20Service.png)
-![Mock Scenarios](../images/BIC%20API%20Mock%20Service.png)
+[View larger image](../images/BIC%20API%20Mock.png)
+![Mock Scenarios](../images/BIC%20API%20Mock.png)
 
 ### Mock environment authentication
    * Consumers of this mock service must be authenticated.
@@ -87,7 +95,9 @@ The BIC API enables the adding / updating and ceasing of the BIC codes for an id
 ### Test mock data
 * [Mock Test Data](../Test%20Details/) 		
 		
+### Test scenarios report template
 
+- [Download Test Scenarios report template](BIC%20API%20-%20Test%20Report_v1.0.docx) 
 
 
 
