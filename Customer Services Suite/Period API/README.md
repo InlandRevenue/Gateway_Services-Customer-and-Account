@@ -14,7 +14,7 @@ The period API provides information about one or more periods for an identified 
 
 ## Key documentation
 
-* View and download the [Period API YAML](Period%202021-09-14.yaml)
+* View and download the [Period API YAML](Period%202021-10-28.yaml)
 * [Download the Period API build pack](Build%20pack%20-%20Period%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON request and response messages 
 * [View API Reference and URL endpoints](#Period-API-REST-Reference)
