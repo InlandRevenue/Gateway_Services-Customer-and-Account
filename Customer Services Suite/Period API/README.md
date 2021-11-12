@@ -36,7 +36,7 @@ The period API provides information about one or more periods for an identified 
 
 | Service | HTTP Status Code| Description | JSON Request | JSON Response | 
 | -- | :--: | -- | -- | -- | 
-| list | `200` | Non-INC_account | [Request](sample%20messages/POST_200_list_non-INC_account_request.json) | [Response](sample%20messages/POST_200_list_non-INC_account_response.json) | 
+| list | `200` | Non-INC_account | [Request](sample%20messages/POST_200_list_non-INC_account_request.json) | [Response](sample%20messages/POST_200_list_non-INC_account_request.json) | 
 | list | `200` | Specific_INC period details | [Request](sample%20messages/POST_200_list_specific_INC_period_details_response.json) | [Response](sample%20messages/POST_200_list_specific_INC_period_details_response.json) | 
 | list | `400` | EV1022 Access not permitted | [Request](sample%20messages/POST_400_list_EV1022_access_not_permitted_request.json) | [Response](sample%20messages/POST_400_list_EV1022_access_not_permitted_response.json) | 
 | list | `400` | EV1100 Invalid From Date | [Request](sample%20messages/POST_400_list_EV1100_invalid_From_Date_request.json) | [Response](sample%20messages/POST_400_list_EV1100_invalid_From_Date_response.json) | 
