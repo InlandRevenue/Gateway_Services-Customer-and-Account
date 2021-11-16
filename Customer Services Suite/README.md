@@ -23,6 +23,9 @@ Address API updates customer and account addresses.
 ### [Bank API](Bank%20API) 
 Bank Account API updates refund bank account information of an identified customer’s account.
 
+### [BIC API](BIC%20API) 
+BIC API updates of the BIC codes information of an identified for a customer’s account.
+
 ### [Contact API](Contact%20API) 
 Contact API updates customer and account contacts.
 
@@ -64,6 +67,14 @@ You'll need to use different APIs depending on the service that your app provide
 | -- | :--: | -- | 
 | bank |  `DELETE` | Deletes the refund bank account from the identified customer account |
 | bank |  `POST` | Adds a refund bank account to the identified customer account if there is not already a refund bank account on the customer account<br/>Or<br/>Replaces an existing refund bank account on the identified customer account  |
+
+---
+
+#### BIC API - `/gateway/bank/{Service}`
+| Service | HTTP request types | Description | 
+| -- | :--: | -- | 
+| bic |  `DELETE` | Adds new or updates existing BIC code to customer |
+| bic |  `POST` | Ceases an existing BIC code on a customer  |
 
 ---
 

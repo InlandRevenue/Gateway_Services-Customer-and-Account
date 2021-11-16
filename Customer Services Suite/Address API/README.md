@@ -8,7 +8,7 @@
 
 ## About the Address API 
 
-The address API enables the creating, updating, and deleting of the address of a customer or an account. It is one of seven APIs that together make up the customer services suite.
+The address API enables the creating, updating, and deleting of the address of a customer or an account. It is one of eight APIs that together make up the customer services suite.
 
 >**NOTE:** The Address API is only available to Digital Service Providers who use X.509 Digital Certificate used for Mutual TLS on port 4046 and requires OAuth2 or JWT token.
 
