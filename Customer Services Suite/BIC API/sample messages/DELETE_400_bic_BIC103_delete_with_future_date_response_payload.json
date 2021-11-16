@@ -1,0 +1,9 @@
+{
+	"errors": [
+        {
+            "code": "BIC103",
+            "type": "validation",
+            "message": "Activity cease date may not be in the future"
+        }
+    ]
+}

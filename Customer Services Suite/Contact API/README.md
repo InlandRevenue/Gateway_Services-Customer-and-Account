@@ -8,7 +8,7 @@
 
 ## About the Contact API 
 
-The contact API enables the creating, updating, and deleting of the contact details of a customer or an account. It is one of seven APIs that together make up the customer services suite. 
+The contact API enables the creating, updating, and deleting of the contact details of a customer or an account. It is one of eight APIs that together make up the customer services suite. 
 
 >**NOTE:** The Contact API is only available to Digital Service Providers who use X.509 Digital Certificate used for Mutual TLS on port 4046 and requires OAuth2 or JWT token.
 

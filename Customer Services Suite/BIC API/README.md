@@ -1,29 +1,29 @@
 
-![IRD logo](../../Images/IRlogo.gif)
+![IRD logo](../../Images/IRlogo.gif)</br>
 ![Software Dev](../../Images/SoftwareDev.png)
 
-# Bank API 
+# BIC API 
 
 #### Release version 1.0
 
-## About the Bank API 
+## About the BIC API 
 
-The bank account API enables the creating and deleting of the refund bank account for an identified customer’s account. It is one of eight APIs that together make up the customer services suite.
+The BIC API enables the adding / updating and ceasing of the BIC codes for an identified customer’s account. It is one of eight APIs that together make up the customer services suite.
 
->**NOTE:** The Bank API is only available to Digital Service Providers who use X.509 Digital Certificate used for Mutual TLS on port 4046 and requires OAuth2 or JWT token.
+>**NOTE:** The BIC API is only available to Digital Service Providers who use X.509 Digital Certificate used for Mutual TLS on port 4046 and requires OAuth2 or JWT token.
 
 ## Key documentation
-* View and download the [Bank API YAML](Bank%202021-09-14.yaml)
-* [Download the Bank API build pack](Build%20pack%20-%20Bank%20API.pdf) to view data definitions of each operation and response status code definitions
+* View and download the [BIC API YAML](BIC%2014-19-2021.yaml)
+* [Download the BIC API build pack](Build%20pack%20-%20BIC%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON request messages 
-* [View API Reference and URL endpoints](#Bank-API-REST-Reference)	
+* [View API Reference and URL endpoints](#BIC-API-REST-Reference)	
 
 ## Environment information
 * [Mock environment information - emulated service URL, scenarios mindmap and test data](#mock-environment-information)
 
 ## Supporting services
 * Service: Identity and access - view: [How to integrate, M2M JWT, OAuth requests and responses message samples and build pack](https://github.com/InlandRevenue/Gateway_Services-Access/tree/master/Identity%20and%20Access)
-* [Account API](../Account%20API)
+* [Customer API](../Customer%20API)
 ---
 
 <a name="Sample-Messages"></a>
@@ -31,30 +31,32 @@ The bank account API enables the creating and deleting of the refund bank accoun
 
 | Service | HTTP request types | HTTP Status Code| Description | JSON Request | JSON Response | 
 | -- | -- | :--: | -- | -- | -- | 
-| bank | DELETE | `200` | Delete bank account | [Request](sample%20messages/DELETE_200_Delete_bank_request.json) | Validate HTTP Status Code | 
-| bank | DELETE | `400` | The account provided does not have an existing bank account associated | [Request](sample%20messages/DELETE_400_Delete_bank_account_provided_does_not_have_an_existing_bank_account.json) | Validate HTTP Status Code  | 
-| bank | POST | `200` | Create international bank account | [Request](sample%20messages/POST_200_bank_Create_international_bank_account_request.json) | Validate HTTP Status Code  | 
-| bank | POST | `200` | Create NZ bank account | [Request](sample%20messages/POST_200_bank_Create_NZ_bank_account_request.json) | Validate HTTP Status Code  | 
-| bank | POST | `200` | Create NZ credit union bank account | [Request](sample%20messages/POST_200_bank_Create_NZ_credit_union_bank_account.json) | Validate HTTP Status Code  | 
-| bank | POST | `400` | There is no physical address for the customer or account for the provided country | [Request](sample%20messages/POST_400_bank_no_physical_address_for_the_customer_request.json) | Validate HTTP Status Code  | 
+| bic | DELETE | 200 | Delete BIC request with CST ID | [Request](sample%20messages/DELETE_200_Delete_bic_request_with_CST_ID.json) | HTTP Status Code 200 | 
+| bic | DELETE | 200 | Delete BIC request with IRD ID | [Request](sample%20messages/DELETE_200_Delete_bic_request_with_IRD_ID.json) | HTTP Status Code 200 |
+| bic | DELETE | 400 | Delete non-existet BIC code request | [Request](sample%20messages/DELETE_400_bic_BIC101_delete_non-existet_biccode_request_payload.json) | [Response](sample%20messages/DELETE_400_bic_BIC101_delete_non-existet_biccode_response_payload.json) |
+| bic | DELETE | 400 | Delete with future date request payload |[Request](sample%20messages/DELETE_400_bic_BIC103_delete_with_future_date_request_payload.json) | [Response](sample%20messages/DELETE_400_bic_BIC103_delete_with_future_date_response_payload.json) |
+| bic | POST | 200 | Add BIC request with CST ID | [Request](sample%20messages/POST_200_Add_bic_request_with_CST_ID.json) | HTTP Status Code 200| 
+| bic | POST | 200 | Add BIC request with IRD ID| [Request](sample%20messages/POST_200_Add_bic_request_with_IRD_ID.json) | HTTP Status Code 200 |
+| bic | POST   | 400 | Add with future date request payload |[Request](sample%20messages/POST_400_bic_BIC102_add_with_future_date_request_payload.json) | [Response](sample%20messages/POST_400_bic_BIC102_add_with_future_date_response_payload.json) |
 
 
-<a name="Bank-API-REST-Reference"></a>
-## Bank API REST Reference and URL endpoints
+
+<a name="BIC-API-REST-Reference"></a>
+## BIC API REST Reference and URL endpoints
 
 | Environment | Scheme Authority | Mutual TLS (mTLS) authentication |
 | --- | --- | :---: |
 | Mock (DPS)| `https://customerservices.test.services.ird.govt.nz`| no |
 | Production (PROD) | `https://services.ird.govt.nz:4046`| yes |
 
-#### Bank API - `{Scheme Authority}/gateway/bank/{Service}`
+#### BIC API - `{Scheme Authority}/gateway/bic/{Service}`
 | Service | HTTP request types | Description | 
 | -- | :--: | -- | 
-| bank |  `DELETE` | Deletes the refund bank account from the identified customer account |
-| bank |  `POST` | Adds a refund bank account to the identified customer account if there is not already a refund bank account on the customer account<br/>Or<br/>Replaces an existing refund bank account on the identified customer account  |
+| bic |  `DELETE` | Ceases an existing BIC code on a customer |
+| bic |  `POST` | Adds new or updates existing BIC code to customer  |
 | status | `GET` | This web service sends a 200 HTTP response with a message body of "OK". This is preferred over service "ping" functionality as this should *only* be used to validate the service and credential configuration | 
 
-> The `status` service might not be available in the mock environment.
+> The `status` service might not be available in the mock or production environment.
 
 <a name="mock-environment-information"></a>
 ## Mock environment information
@@ -62,10 +64,10 @@ The bank account API enables the creating and deleting of the refund bank accoun
 ### Mock emulated service URL
 * Landing Page https://customerservices.test.services.ird.govt.nz
 
-### Bank mock scenarios mindmap
+### BIC mock scenarios mindmap
 
-[View larger image](../images/Bank%20API%20Mock%20Service.png)
-![Mock Scenarios](../images/Bank%20API%20Mock%20Service.png)
+[View larger image](../images/BIC%20API%20Mock.png)
+![Mock Scenarios](../images/BIC%20API%20Mock.png)
 
 ### Mock environment authentication
    * Consumers of this mock service must be authenticated.
@@ -95,7 +97,7 @@ The bank account API enables the creating and deleting of the refund bank accoun
 		
 ### Test scenarios report template
 
-- [Download Test Scenarios report template](Bank%20API%20-%20Test%20Report%20Template_v1.2.docx) 
+- [Download Test Scenarios report template](BIC%20API%20-%20Test%20Report_v1.0.docx) 
 
 
 
