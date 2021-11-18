@@ -9,17 +9,20 @@
             "ReturnData": false,
             "DefaultAssessment": 0,
             "INC": {
+                "ExtensionOfTimeStatus": "D",
                 "ExtensionOfTime": true,
                 "ExtensionOfTimeType": "Agent",
                 "TaxPooling": false,
                 "LossToCarryForward": 0,
                 "ExcessImputationToCarryForward": 0,
+                "ResidentialRentalDeductionsToCarryForward": 0,
+                "ResearchAndDevelopmentTaxCreditToCarryForward": 0,
                 "ICABalance": 0,
                 "MACBalance": 0,
                 "FilingGroup": "IITSG3",
                 "LossCarryBack": false,
                 "BalanceDate": "2021-03-31",
-                "DeferredDate": "9999-12-31",
+                "DeferredDate": "2021-04-15",
                 "Prov": [
                     {
                         "Method": "STD",
