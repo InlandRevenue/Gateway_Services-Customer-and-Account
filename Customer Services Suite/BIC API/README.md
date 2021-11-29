@@ -13,7 +13,7 @@ The BIC API enables the adding / updating and ceasing of the BIC codes for an id
 >**NOTE:** The BIC API is only available to Digital Service Providers who use X.509 Digital Certificate used for Mutual TLS on port 4046 and requires OAuth2 or JWT token.
 
 ## Key documentation
-* View and download the [BIC API YAML](BIC%2014-19-2021.yaml)
+* View and download the [BIC API YAML](BIC%2021-11-29.yaml)
 * [Download the BIC API build pack](Build%20pack%20-%20BIC%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON request messages 
 * [View API Reference and URL endpoints](#BIC-API-REST-Reference)	
