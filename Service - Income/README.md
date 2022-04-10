@@ -17,7 +17,7 @@ The Income API described in this build pack document provides a mechanism for ex
 ## Key documentation
 ---
 - YAML file
-	- View and download the [Income API YAML](Income%20API%202022-03-09.yaml)
+	- View and download the [Income API YAML](Income%20API%202022-04-11.yaml)
 
 - Build pack 
 	- [Download the Income API build pack](Gateway%20Services%20Build%20pack%20-%20Income%20API.pdf) to view data definitions of each operation and response status code definitions
