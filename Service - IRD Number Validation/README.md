@@ -22,7 +22,7 @@ This service supports the following message type:
 ## Key documentation
 
 - YAML file:
-	- View and download the [v1 Open API definition (YAML)](Customer%20Service%202020-03-10.yaml)
+	- View and download the [v1 Open API definition (YAML)](Customer%20Service%2020220510.yaml)
 
 - IRD number validation build pack
 	- [Download the build pack](Build%20pack%20-%20IRD%20Number%20Validation%20Service.pdf) to view data definitions of each operation and response status code definitions
@@ -31,9 +31,7 @@ This service supports the following message type:
 	* [View message samples for requests and positive responses](#Message-samples)
 
 ## Environment information
-- [Mock environment information - Emulated services, mind map and test data](#mock-environment-information)
-
-- [Test environment information - Test scenarios report template and URL endpoints](#test-environment-information)
+- [Mock environment information - Emulated services, mind map and test data, Test scenarios report template and URL endpoints](#mock-environment-information)
 
 - [Production environment information - URL endpoint](#prod-environment-information)
 
@@ -76,18 +74,6 @@ This service supports the following message type:
     	MOCK-20 | Customer IRD (*identifier*): 123345002 | HTTP Response Code - 400
     	MOCK-30 | Customer IRD (*identifier*): 123456789 | HTTP Response Code - 400
     	
-
-----
-## Test environment information
-
-### Test environment URL
-| End point|  URL|
-|--|--|
-- Testing : https://test5.services.ird.govt.nz:4046/Gateway/customer-service/validateIRD
-- Pre-Production : https://test6.services.ird.govt.nz:4046/Gateway/customer-service/validateIRD  
-
->**NOTE:** These endpoints are subject to change due to environment updates in the future. 
-
 ### Test scenarios report template
 
 - [Download Test Scenarios report template](IRD%20Validation%20Service%20-%20Test%20Report%20Template.docx)
@@ -98,4 +84,4 @@ This service supports the following message type:
 ### Prod environment URL
 | End point|  URL|
 |--|--|
-- Production : https://services.ird.govt.nz:4046/Gateway/customer-service/validateIRD
+- Production : https://services.ird.govt.nz:4046/gateway/customer-service/validateIRD

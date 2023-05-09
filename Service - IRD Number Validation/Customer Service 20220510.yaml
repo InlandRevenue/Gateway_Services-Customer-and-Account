@@ -1,8 +1,8 @@
 swagger: '2.0'
 info: 
   title: Customer Service
-  version: ""
-host: test5.services.ird.govt.nz
+  version: "20230324"
+host: services.ird.govt.nz:4046
 basePath: '/gateway/customer-service/'
 schemes: 
   - https
