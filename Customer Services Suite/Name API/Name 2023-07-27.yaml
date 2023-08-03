@@ -292,7 +292,7 @@ definitions:
           properties: 
             code: 
               type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>NAM100</td><td>A name of this type cannot be deleted. Please update instead.</td></tr></tbody></table>'
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>NAM100</td><td>A name of this type cannot be deleted. Please update instead.</td></tr><tr><td>NAM102</td><td>Cannot use this service to manage a Legal name.</td></tr></tbody></table>'
               maxLength: 6
               enum: 
                 - CST404
@@ -300,6 +300,7 @@ definitions:
                 - EV1021
                 - EV1100
                 - NAM100
+                - NAM102
             type: 
               type: string
               description: Type of validation code returned
@@ -387,7 +388,7 @@ definitions:
           properties: 
             code: 
               type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>NAM100</td><td>A name of this type cannot be deleted. Please update instead.</td></tr></tbody></table>'
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>NAM100</td><td>A name of this type cannot be deleted. Please update instead.</td></tr><tr><td>NAM102</td><td>Cannot use this service to manage a Legal name.</td></tr></tbody></table>'
               maxLength: 6
               enum: 
                 - CST404
@@ -395,6 +396,7 @@ definitions:
                 - EV1021
                 - EV1100
                 - NAM100
+                - NAM102
             type: 
               type: string
               description: Type of validation code returned
@@ -431,7 +433,7 @@ definitions:
           properties: 
             code: 
               type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>NAM101</td><td>There is an existing name of this type.</td></tr></tbody></table>'
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>NAM101</td><td>There is an existing name of this type.</td></tr><tr><td>NAM102</td><td>Cannot use this service to manage a Legal name.</td></tr></tbody></table>'
               maxLength: 6
               enum: 
                 - CST404
@@ -440,6 +442,7 @@ definitions:
                 - EV1100
                 - EV2234
                 - NAM101
+                - NAM102
             type: 
               type: string
               description: Type of validation code returned
@@ -527,7 +530,7 @@ definitions:
           properties: 
             code: 
               type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>NAM101</td><td>There is an existing name of this type.</td></tr></tbody></table>'
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>NAM101</td><td>There is an existing name of this type.</td></tr><tr><td>NAM102</td><td>Cannot use this service to manage a Legal name.</td></tr></tbody></table>'
               maxLength: 6
               enum: 
                 - CST404
@@ -536,6 +539,7 @@ definitions:
                 - EV1100
                 - EV2234
                 - NAM101
+                - NAM102
             type: 
               type: string
               description: Type of validation code returned
@@ -563,13 +567,14 @@ definitions:
           properties: 
             code: 
               type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>NAM102</td><td>Cannot use this service to manage a Legal name.</td></tr></tbody></table>'
               maxLength: 6
               enum: 
                 - CST404
                 - EV1020
                 - EV1021
                 - EV1100
+                - NAM102
             type: 
               type: string
               description: Type of validation code returned
@@ -657,13 +662,14 @@ definitions:
           properties: 
             code: 
               type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>CST404</td><td>A record could not be located for the given identifier.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>NAM102</td><td>Cannot use this service to manage a Legal name.</td></tr></tbody></table>'
               maxLength: 6
               enum: 
                 - CST404
                 - EV1020
                 - EV1021
                 - EV1100
+                - NAM102
             type: 
               type: string
               description: Type of validation code returned

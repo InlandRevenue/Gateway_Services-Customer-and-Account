@@ -14,7 +14,7 @@ The name API enables the creating, updating, and deleting of the customer’s na
 
 ## Key documentation
 
-* View and download the [Name API YAML](Name%202021-09-14.yaml)
+* View and download the [Name API YAML](Name%202023-07-27.yaml)
 * [Download the Name API build pack](Build%20pack%20-%20Name%20API.pdf) to view data definitions of each operation and response status code definitions
 * [Sample Messages](#Sample-Messages) to a list of successful and errored JSON messages 
 * [View API Reference and URL Endpoints](#Name-API-REST-Reference)	
@@ -58,7 +58,7 @@ The name API enables the creating, updating, and deleting of the customer’s na
 | name | `DELETE` | Deletes a given name from the customer data set |
 | status | `GET` | This web service sends a 200 HTTP response with a message body of "OK". This is preferred over service "ping" functionality as this should *only* be used to validate the service and credential configuration | 
 
-> The `status` service might not be available in the mock environment.
+> The `status` service is not available in the mock environment.
 
 
 
