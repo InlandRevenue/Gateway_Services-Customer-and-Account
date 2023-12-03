@@ -1,0 +1,307 @@
+swagger: '2.0'
+info: 
+  title: Income
+  description: A REST API service for retrieving a customer’s income profile data reported to Inland Revenue.
+  version: ""
+host: services.ird.govt.nz
+basePath: /gateway/income/
+schemes: 
+  - https
+paths: 
+  /list: 
+    post: 
+      tags: 
+        - Income Profile
+      summary: Income Profile
+      description: ""
+      operationId: listPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/list_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/list_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/list_POST_Response400'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/list_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/list_POST_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
+definitions: 
+  list_POST_Request: 
+    type: object
+    required: 
+      - IRD
+      - StartDate
+    properties: 
+      IRD: 
+        type: string
+        description: The customers IRD number. If it is an 8 digit IRD then it must be 0 padded. E.g. '12345678' should be '012345678'.
+        maxLength: 9
+        minLength: 9
+      StartDate: 
+        type: string
+        description: 'This is the date the payment was effective from. Must be in the format ''YYYY-MM-DD'', e.g. ''2019-03-31''. This must be greater than ''1900-01-01''.'
+        maxLength: 10
+        minLength: 10
+      EndDate: 
+        type: string
+        description: 'This is the date the payment was effective to. Must be in the format ''YYYY-MM-DD'', e.g. ''2019-03-31''. This must be greater than ''1900-01-01''.'
+        maxLength: 10
+        minLength: 10
+  list_POST_Response200: 
+    type: object
+    required: 
+      - IncomeProfile
+    properties: 
+      IncomeProfile: 
+        type: array
+        description: IncomeProfile Array
+        items: 
+          type: object
+          description: Income Profile Object
+          required: 
+            - IncomeRequired
+            - IncomeType
+            - IncomeSource
+            - IncomeSourceID
+            - IncomeSourceIDType
+            - Amount
+            - Deductions
+          properties: 
+            IncomeRequired: 
+              type: string
+              description: 'Date that the income was recognised. Must be in the format ''YYYY-MM-DD'', e.g. ''2019-03-31''.'
+              maxLength: 10
+              minLength: 10
+            IncomeType: 
+              type: string
+              description: 'Income Type, this is one of the following:<table><tbody><tr><th>code</th><th>description</th></tr><tr><td>ACC</td><td>Accident Compensation</td></tr><tr><td>ACC2006</td><td>Accident Compensation (2006)</td></tr><tr><td>ACCATC</td><td>ACC Attendant care</td></tr><tr><td>AIL</td><td>Approved issuer levy</td></tr><tr><td>BPACC</td><td>BLSP - Accident Compensation</td></tr><tr><td>BPATC</td><td>BLSP - ACC Attendant care</td></tr><tr><td>BPBEN</td><td>BLSP - Income Tested Benefit</td></tr><tr><td>CAE</td><td>Casual Agricultural Employee</td></tr><tr><td>DIVIDN</td><td>Dividends</td></tr><tr><td>DIVINT</td><td>Dividends treated as interest</td></tr><tr><td>EDW</td><td>Election Day Worker</td></tr><tr><td>ESS</td><td>Employee Share Scheme</td></tr><tr><td>EXCIMP</td><td>Excess Imputation Credits</td></tr><tr><td>INCBEN</td><td>Income Tested Benefit</td></tr><tr><td>LOSCAR</td><td>Loss carried forward</td></tr><tr><td>LTCINC</td><td>LTC Income</td></tr><tr><td>MAORI</td><td>Māori Authority</td></tr><tr><td>NONBUS</td><td>Non-business expense</td></tr><tr><td>NRDIV</td><td>Non-resident dividends</td></tr><tr><td>NRINT</td><td>Non-resident interest</td></tr><tr><td>NZINT</td><td>Interest</td></tr><tr><td>PENSION</td><td>NZ Superannuation or Pension</td></tr><tr><td>PIE</td><td>Certificates (PIE)</td></tr><tr><td>PPL</td><td>Paid Parental Leave</td></tr><tr><td>PTRINC</td><td>Partnership Income</td></tr><tr><td>RESDSB</td><td>Reserve Scheme Withdrawal</td></tr><tr><td>RESNRINT</td><td>Reserve scheme interest (non-resident)</td></tr><tr><td>RESNZINT</td><td>Reserve schemes interest (resident)</td></tr><tr><td>RESPYM</td><td>Reserve Scheme Deposit</td></tr><tr><td>RESRED</td><td>Reserve Scheme Redeposit</td></tr><tr><td>RINGFWD</td><td>Residential rental deductions carried forward</td></tr><tr><td>RINGLTC</td><td>LTC ring fencing rental losses</td></tr><tr><td>RINGPRT</td><td>Partnership ring fencing rental losses</td></tr><tr><td>RLWT</td><td>RLWT Deducted</td></tr><tr><td>RND</td><td>R&D tax credit carry forward</td></tr><tr><td>ROYALT</td><td>Royalties</td></tr><tr><td>SALWAGE</td><td>Salary / Wages</td></tr><tr><td>SHRAIM</td><td>Shareholder-AIM Tax Credit</td></tr><tr><td>SHREMP</td><td>Shareholder-Employee Salary</td></tr><tr><td>SLS215</td><td>Income Adjustment - SLS</td></tr><tr><td>SLSALL</td><td>Student Allowance</td></tr><tr><td>TRST</td><td>Estate / Trust Income</td></tr><tr><td>WAGESUB</td><td>Government Subsidies</td></tr><tr><td>WT</td><td>Schedular Payments</td></tr></tbody></table>'
+              maxLength: 255
+              enum: 
+                - ACC
+                - ACC2006
+                - ACCATC
+                - AIL
+                - BPACC
+                - BPATC
+                - BPBEN
+                - CAE
+                - DIVIDN
+                - DIVINT
+                - EDW
+                - ESS
+                - EXCIMP
+                - INCBEN
+                - LOSCAR
+                - LTCINC
+                - MAORI
+                - NONBUS
+                - NRDIV
+                - NRINT
+                - NZINT
+                - PENSION
+                - PIE
+                - PPL
+                - PTRINC
+                - RESDSB
+                - RESNRINT
+                - RESNZINT
+                - RESPYM
+                - RESRED
+                - RINGFWD
+                - RINGLTC
+                - RINGPRT
+                - RLWT
+                - RND
+                - ROYALT
+                - SALWAGE
+                - SHRAIM
+                - SHREMP
+                - SLS215
+                - SLSALL
+                - TRST
+                - WAGESUB
+                - WT
+            IncomeSource: 
+              type: string
+              description: 'Income source; this is the name of the employer or investment account from which the income has been earned. If this income source is unknown an empty string will be returned. '
+              maxLength: 255
+            IncomeSourceID: 
+              type: string
+              description: 'Income source ID; this identifies the employer or investment account from which the income has been earned. If this income source is unknown an empty string will be returned. '
+              maxLength: 255
+            IncomeSourceIDType: 
+              type: string
+              description: 'Income source ID type; this identifies the employer or investment account from which the income has been earned. If this income source is unknown an empty string will be returned. '
+              maxLength: 255
+            Amount: 
+              type: string
+              description: 'Income amount, this is the gross amount.'
+            Deductions: 
+              type: string
+              description: The amount that was deducted from the income amount.
+            StudentLoan: 
+              type: string
+              description: Student loan repayment amount
+            Donation: 
+              type: string
+              description: Amount of tax credits for payroll donations
+            ExtinguishedDonation: 
+              type: string
+              description: Amount of extinguished tax credits for payroll donations
+            FamilyTaxCredit: 
+              type: string
+              description: Amount of Family tax credits received from Work and Income
+            EarningsNotLiableForACC: 
+              type: string
+              description: Amount of earnings not liable for ACC.
+            ImputationCreditforDividend: 
+              type: string
+              description: Amount of imputation credits for dividend
+            RateYearEnd: 
+              type: string
+              description: The Portfolio investment income rate as at year end
+            RateChanged: 
+              type: boolean
+              description: Whether the portfolio investment income rate has changed
+            SubsidyType: 
+              type: string
+              description: Government subsidy type.
+  list_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV1200</td><td>The number of records retrieved exceeds the maximum limit.</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>EV2235</td><td>IR number not found</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+                - EV1200
+                - EV2234
+                - EV2235
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  list_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  list_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV1200</td><td>The number of records retrieved exceeds the maximum limit.</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>EV2235</td><td>IR number not found</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+                - EV1200
+                - EV2234
+                - EV2235
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
