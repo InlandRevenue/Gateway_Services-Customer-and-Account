@@ -55,7 +55,7 @@
 ### Mock environment authentication
    * Consumers of this mock service must be authenticated.
    * Access delegation/restriction is not emulated, and any authenticated user has access to the test data.
-   * Authentication is provided by an OAuth token issued by the mock OAuth service. Any valid token issued by the mock OAuth service can be used to access this service. Please consult the [mock OAuth service documentation](https://mock-oauth.ird.digitalpartner.services/) for further details about the authentication process.
+   * Authentication is provided by an OAuth token issued by the mock OAuth service. Any valid token issued by the mock OAuth service can be used to access this service. Please consult the [mock OAuth service documentation](https://oauth.test.services.ird.govt.nz/) for further details about the authentication process.
    * The OAuth token should be provided in the 'Authorization' request header as follows:
    ```
    Authorization: Bearer {OAuthAccessToken}

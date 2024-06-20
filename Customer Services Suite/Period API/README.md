@@ -79,7 +79,7 @@ The period API provides information about one or more periods for an identified 
 * Authentication is provided using one of two methods:
  1. OAuth
 	* OAuth token issued by the mock OAuth service. Any valid token issued by the mock OAuth service can be used to access this service.
-	* Please consult the [mock OAuth service documentation](https://mock-oauth.ird.digitalpartner.services/) for further details about the authentication process.
+	* Please consult the [mock OAuth service documentation](https://oauth.test.services.ird.govt.nz/) for further details about the authentication process.
 	* The OAuth token should be provided in the 'Authorization' request header as follows:
 	```
 	Authorization: Bearer {OAuthAccessToken}
